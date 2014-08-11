@@ -35,5 +35,33 @@ class PlayersController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
+
+	// Método de visualização do player
+	function index($name) {
+		if(!empty($name)) {
+			$character = $this->Player->find( // Busca os characters relacionado a conta do usuario logado
+				'first', 
+				array(
+					'conditions' => array( // Condições de busca
+						'name' => $name
+					),
+					// 'fields' => array( // Campos trazidos
+						// 'Player.name',
+						// 'Player.vocation',
+						// 'Player.level',
+						// 'Player.lastlogin'
+					// )
+				)
+			);
+			$this->set('character', $character); // Seta os dados para a view
+			$vocation_player = array(); // Cria array vazio para se usar
+			foreach(Configure::read('Vocations') as $vocation_id => $vocation) { // Percorre o array de registros
+				$vocation_player[$vocation_id] = $vocation; // Cria o array para exibir na view
+			}
+			$this->set('vocation', $vocation_player); // Envia para a view os dados
+		} else {
+			return $this->redirect('/'); // Redireciona pois não foi passado nenhum nome de player
+		}
+	}
 	
 }

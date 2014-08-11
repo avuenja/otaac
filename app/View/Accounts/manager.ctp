@@ -17,7 +17,7 @@
 			} else { // Se não:
 				foreach ($characters as $character) {
 					echo '<tr>';
-					echo '<td><a href="'.url.'player/'.$character['Player']['name'].'">'.$character['Player']['name'].'</a></td>';
+					echo '<td><a href="'.url.'players/'.$character['Player']['name'].'">'.$character['Player']['name'].'</a></td>';
 					echo '<td>'.$vocation[$character['Player']['vocation']].'</td>';
 					echo '<td>'.$character['Player']['level'].'</td>';
 					echo '<td>'.((!$character['Player']['lastlogin']) ? 'Nunca logou' : $character['Player']['lastlogin']).'</td>';
