@@ -10,23 +10,23 @@
 		<table class="table table-condensed table-content table-striped">
 			<tbody>
 				<tr>
-					<td style="width: 80%"><strong>1.</strong> <a href="character.php?name=Fatima+Skyland">I got you</a></td>
+					<td style="width: 80%"><strong>1.</strong> <a href="<?php echo url; ?>guild/I+got+you">I got you</a></td>
 					<td><span class="label label-info">Kill. 109</span></td>
 				</tr>
 				<tr>
-					<td style="width: 80%"><strong>2.</strong> <a href="character.php?name=General+Tumate">Just breathe</a></td>
+					<td style="width: 80%"><strong>2.</strong> <a href="<?php echo url; ?>guild/Just+breathe">Just breathe</a></td>
 					<td><span class="label label-info">Kill. 102</span></td>
 				</tr>
 				<tr>
-					<td style="width: 80%"><strong>3.</strong> <a href="character.php?name=Hejter">The bests</a></td>
+					<td style="width: 80%"><strong>3.</strong> <a href="<?php echo url; ?>guild/The+bests">The bests</a></td>
 					<td><span class="label label-info">Kill. 82</span></td>
 				</tr>
 				<tr>
-					<td style="width: 80%"><strong>4.</strong> <a href="character.php?name=Off+Supremesz">Jeremy</a></td>
+					<td style="width: 80%"><strong>4.</strong> <a href="<?php echo url; ?>guild/Jeremy">Jeremy</a></td>
 					<td><span class="label label-info">Kill. 64</span></td>
 				</tr>
 				<tr>
-					<td style="width: 80%"><strong>5.</strong> <a href="character.php?name=Cornel">Hey brother</a></td>
+					<td style="width: 80%"><strong>5.</strong> <a href="<?php echo url; ?>guild/Hey+brother">Hey brother</a></td>
 					<td><span class="label label-info">Kill. 58</span></td>
 				</tr>
 			</tbody>

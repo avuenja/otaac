@@ -52,10 +52,11 @@ class Account extends AppModel {
 	
 	// Método beforeSave (Antes de salvar)
 	public function beforeSave($options = array()) {
-		if($this->params['action'] == 'create') { // Se o método for o create:
+		if($this->data['Account']['creation'] == 0) { // Se o método for o create:
 			if($this->data['Account']['password'] === $this->data['Account']['password_repeat'] && !empty($this->data['Account']['password'])) { // Se não vazio e for identica a password repeat:
 				$this->data['Account']['password'] = hash('sha1', $this->data['Account']['password']); // Criptografa a senha
 				$this->data['Account']['password_repeat'] = hash('sha1', $this->data['Account']['password_repeat']); // Criptografa o repeat password (por segurança)
+				$this->data['Account']['creation'] = 1; // Creation recebe 1
 			} else { // Se não:
 				return false; // Retorna falso
 			}

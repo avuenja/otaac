@@ -14,19 +14,19 @@
 					<td><span class="label label-info">Lvl. 499</span></td>
 				</tr>
 				<tr>
-					<td style="width: 80%"><strong>2.</strong> <a href="character.php?name=General+Tumate">Lordfire</a></td>
+					<td style="width: 80%"><strong>2.</strong> <a href="<?php echo url; ?>character/Lordfire">Lordfire</a></td>
 					<td><span class="label label-info">Lvl. 434</span></td>
 				</tr>
 				<tr>
-					<td style="width: 80%"><strong>3.</strong> <a href="character.php?name=Hejter">Alex</a></td>
+					<td style="width: 80%"><strong>3.</strong> <a href="<?php echo url; ?>character/Alex">Alex</a></td>
 					<td><span class="label label-info">Lvl. 429</span></td>
 				</tr>
 				<tr>
-					<td style="width: 80%"><strong>4.</strong> <a href="character.php?name=Off+Supremesz">Beeki</a></td>
+					<td style="width: 80%"><strong>4.</strong> <a href="<?php echo url; ?>character/Beeki">Beeki</a></td>
 					<td><span class="label label-info">Lvl. 427</span></td>
 				</tr>
 				<tr>
-					<td style="width: 80%"><strong>5.</strong> <a href="character.php?name=Cornel">Lucas</a></td>
+					<td style="width: 80%"><strong>5.</strong> <a href="<?php echo url; ?>character/Renato">Renato</a></td>
 					<td><span class="label label-info">Lvl. 426</span></td>
 				</tr>
 			</tbody>

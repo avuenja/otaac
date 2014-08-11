@@ -5,13 +5,13 @@ $config['Database'] = array(
 	'hostname' 	=> 'localhost',
 	'username' 	=> 'root',
 	'password' 	=> '',
-	'database' 	=> 'aac',
+	'database' 	=> 'otaac',
 );
 // Configurações de servidor
 $config['Server'] = array(
 	'name' 		=> 'OpenTibia',
 	'title' 	=> 'OT AAC - The best web application for Open Tibia Servers',
-	'url' 		=> 'http://localhost/aac/'
+	'url' 		=> 'http://localhost/otaac/'
 );
 // Configurações de Engine
 $config['Engine'] = array(
