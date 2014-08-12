@@ -3,6 +3,12 @@ class Player extends AppModel {
 	public $name = 'Player'; // Nome do model
 	public $useTable = 'players'; // Tabela usada pelo model
 	public $actsAs = array(); // Ações que o Model usa
+	public $belongsTo = array( // Associação com outros models
+        'Account' => array(
+            'className' => 'Account',
+            'foreignKey' => 'account_id'
+        )
+    );
 	public $validate = array( // Validação
 		'name' => array(
 			'between' => array(

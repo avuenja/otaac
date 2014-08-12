@@ -37,28 +37,41 @@ class PlayersController extends AppController {
 	}
 
 	// Método de visualização do player
-	function index($name) {
+	function character($name) {
 		if(!empty($name)) {
 			$character = $this->Player->find( // Busca os characters relacionado a conta do usuario logado
 				'first', 
 				array(
 					'conditions' => array( // Condições de busca
-						'name' => $name
+						'Player.name' => $name
 					),
-					// 'fields' => array( // Campos trazidos
-						// 'Player.name',
-						// 'Player.vocation',
-						// 'Player.level',
-						// 'Player.lastlogin'
-					// )
+					'contain' => array( // Tabelas associadas
+						'Account'
+					),
+					'fields' => array( // Campos
+						'Player.name',
+						'Player.vocation',
+						'Player.level',
+						'Player.sex',
+						'Player.lastlogin',
+						'Player.posx',
+						'Player.posy',
+						'Player.posz',
+						'Account.premdays'
+					)
 				)
 			);
-			$this->set('character', $character); // Seta os dados para a view
-			$vocation_player = array(); // Cria array vazio para se usar
-			foreach(Configure::read('Vocations') as $vocation_id => $vocation) { // Percorre o array de registros
-				$vocation_player[$vocation_id] = $vocation; // Cria o array para exibir na view
+			if(!empty($character)) { // Se não vazio o array de character:
+				$this->set('character', $character); // Seta os dados para a view
+				$vocation_player = array(); // Cria array vazio para se usar
+				foreach(Configure::read('Vocations') as $vocation_id => $vocation) { // Percorre o array de registros
+					$vocation_player[$vocation_id] = $vocation; // Cria o array para exibir na view
+				}
+				$this->set('vocation', $vocation_player); // Envia para a view os dados
+			} else { // Se não:
+				$this->Session->setFlash('Não foi possível encontrar este player!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+				return $this->redirect('/'); // Redireciona pois não foi encontrado o player
 			}
-			$this->set('vocation', $vocation_player); // Envia para a view os dados
 		} else {
 			return $this->redirect('/'); // Redireciona pois não foi passado nenhum nome de player
 		}
