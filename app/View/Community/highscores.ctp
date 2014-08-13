@@ -36,7 +36,7 @@
 			<tbody>
 				<?php foreach ($characters as $character) { ?>
 				<tr class="<?php echo (($character['Account']['premdays'] > 0) ? 'success' : ''); ?>">
-					<td><?php echo $character['Player']['name']; ?></td>
+					<td><?php echo '<a href="'.url.'character/'.$character['Player']['name'].'">'.$character['Player']['name'].'</a>'; ?></td>
 					<td><?php echo $vocation[$character['Player']['vocation']]; ?></td>
 					<td><?php echo $character['Player']['level']; ?></td>
 					<td><?php echo $character['Player']['experience']; ?></td>
