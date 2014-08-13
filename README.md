@@ -7,7 +7,7 @@ An AAC for Open Tibia Servers, made with 100% in CakePHP. Brings easier for admi
 * [Source of AAC project](https://github.com/Avuenja/OTAAC)
 * [Installation guide](https://github.com/Avuenja/OTAAC/wiki/Installation-guide)
 * Tutorials
-* And anything related to the same
+* [And anything related to the same](https://github.com/Avuenja/OTAAC/wiki)
 
 #### Contribution guidelines ####
 
