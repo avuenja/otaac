@@ -48,6 +48,5 @@
 			</tbody>
 		</table
 	</div>
-	<?php //pr($character); ?>
 </div>
 <?php } ?>
