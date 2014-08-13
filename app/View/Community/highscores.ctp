@@ -38,16 +38,16 @@
 				<tr class="<?php echo (($character['Account']['premdays'] > 0) ? 'success' : ''); ?>">
 					<td><?php echo '<a href="'.url.'character/'.$character['Player']['name'].'">'.$character['Player']['name'].'</a>'; ?></td>
 					<td><?php echo $vocation[$character['Player']['vocation']]; ?></td>
-					<td><?php echo $character['Player']['level']; ?></td>
-					<td><?php echo $character['Player']['experience']; ?></td>
-					<td><?php echo $character['Player']['maglevel']; ?></td>
-					<td><?php echo $character['Player']['skill_fist']; ?></td>
-					<td><?php echo $character['Player']['skill_club']; ?></td>
-					<td><?php echo $character['Player']['skill_sword']; ?></td>
-					<td><?php echo $character['Player']['skill_axe']; ?></td>
-					<td><?php echo $character['Player']['skill_dist']; ?></td>
-					<td><?php echo $character['Player']['skill_shielding']; ?></td>
-					<td><?php echo $character['Player']['skill_fishing']; ?></td>
+					<td class="text-center"><?php echo $character['Player']['level']; ?></td>
+					<td class="text-center"><?php echo $character['Player']['experience']; ?></td>
+					<td class="text-center"><?php echo $character['Player']['maglevel']; ?></td>
+					<td class="text-center"><?php echo $character['Player']['skill_fist']; ?></td>
+					<td class="text-center"><?php echo $character['Player']['skill_club']; ?></td>
+					<td class="text-center"><?php echo $character['Player']['skill_sword']; ?></td>
+					<td class="text-center"><?php echo $character['Player']['skill_axe']; ?></td>
+					<td class="text-center"><?php echo $character['Player']['skill_dist']; ?></td>
+					<td class="text-center"><?php echo $character['Player']['skill_shielding']; ?></td>
+					<td class="text-center"><?php echo $character['Player']['skill_fishing']; ?></td>
 				</tr>
 				<?php } ?>
 			</tbody>
