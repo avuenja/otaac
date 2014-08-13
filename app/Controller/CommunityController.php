@@ -55,6 +55,42 @@ class CommunityController extends AppController {
 	
 	// Método highscores
 	function highscores() {
+		if(!empty($this->data)) { // Se o $this->data não esta vazio:
+			$arrayConditions = array(); // criado o array de condições para o filtro
+			$this->loadModel('Player'); // Carrega o Model para ser usado
+			$character = $this->Player->find( // Busca os characters relacionado a conta do usuario logado
+				'first', 
+				array(
+					'conditions' => array( // Condições de busca
+						'Player.name' => $name
+					),
+					'contain' => array( // Tabelas associadas
+						'Account'
+					),
+					'fields' => array( // Campos
+						'Player.name',
+						'Player.vocation',
+						'Player.level',
+						'Player.sex',
+						'Player.lastlogin',
+						'Player.posx',
+						'Player.posy',
+						'Player.posz',
+						'Account.premdays'
+					)
+				)
+			);
+			if(!empty($character)) { // Se não vazio o array de character:
+				$this->set('character', $character); // Seta os dados para a view
+				$vocation_player = array(); // Cria array vazio para se usar
+				foreach(Configure::read('Vocations') as $vocation_id => $vocation) { // Percorre o array de registros
+					$vocation_player[$vocation_id] = $vocation; // Cria o array para exibir na view
+				}
+				$this->set('vocation', $vocation_player); // Envia para a view os dados
+			} else { // Se não:
+				$this->Session->setFlash('Não foi possível encontrar este player!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+			}
+		}
 	}
 	
 }

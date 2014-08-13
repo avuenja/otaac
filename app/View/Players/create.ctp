@@ -11,26 +11,26 @@
 		<label class="col-sm-3 control-label">Sex:</label>
 		<div class="col-sm-9">
 			<?php
-			echo $this->Form->input('sex', array('label' => false, 'options' => array(1 => 'Male', 2 => 'Female'), 'empty' => '**choose your sex**', 'class' => 'form-control'));
+			echo $this->Form->input('sex', array('label' => false, 'options' => array(1 => 'Male', 2 => 'Female'), 'empty' => '--choose your sex--', 'class' => 'form-control'));
 			?>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Vocation:</label>
 		<div class="col-sm-9">
-			<?php echo $this->Form->input('vocation', array('label' => false, 'options' => Configure::read('Vocations'), 'empty' => '**choose your vocation**', 'class' => 'form-control')); ?>
+			<?php echo $this->Form->input('vocation', array('label' => false, 'options' => Configure::read('Vocations'), 'empty' => '--choose your vocation--', 'class' => 'form-control')); ?>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 control-label">City:</label>
 		<div class="col-sm-9">
-			<?php echo $this->Form->input('town_id', array('label' => false, 'options' => $towns, 'empty' => '**choose your town**', 'class' => 'form-control')); ?>
+			<?php echo $this->Form->input('town_id', array('label' => false, 'options' => $towns, 'empty' => '--choose your town--', 'class' => 'form-control')); ?>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 control-label">World:</label>
 		<div class="col-sm-9">
-			<?php echo $this->Form->input('world', array('label' => false, 'options' => Configure::read('Worlds'), 'empty' => '**choose your world**', 'class' => 'form-control')); ?>
+			<?php echo $this->Form->input('world', array('label' => false, 'options' => Configure::read('Worlds'), 'empty' => '--choose your world--', 'class' => 'form-control')); ?>
 		</div>
 	</div>
 	<div class="form-group">
