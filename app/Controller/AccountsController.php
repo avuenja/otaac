@@ -33,7 +33,8 @@ class AccountsController extends AppController {
 					),
 					'fields' => array( // Campos que serão trazidos
 						'Account.id',
-						'Account.name'
+						'Account.name',
+						'Account.type'
 					)
 				)
 			);
@@ -41,6 +42,7 @@ class AccountsController extends AppController {
 				if(!$this->Session->check('Account')) { // Se não existe nenhuma sessão criada:
 					$accountSession = $this->Session->write('Account.id', $account['Account']['id']);
 					$accountSession = $this->Session->write('Account.name', $account['Account']['name']);
+					$accountSession = $this->Session->write('Account.type', $account['Account']['type']);
 					$this->redirect(array('action' => 'manager'));
 				} else { // Se não:
 					$this->Session->destroy(); // Destrói a sessão
