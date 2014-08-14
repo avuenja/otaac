@@ -20,7 +20,7 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Content <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'characters') { ?> class="active" <?php } ?>>
-							<a href="<?php echo url; ?>content/posts">Posts</a>
+							<a href="<?php echo url; ?>posts/consult">Posts</a>
 						</li>
 						<li class="divider"></li>
 						<li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'guilds') { ?> class="active" <?php } ?>>

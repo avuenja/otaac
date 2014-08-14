@@ -22,4 +22,12 @@ class PostsController extends AppController {
 		$this->set('posts', $posts); // Passa os dados da busca para a view
 	}
 	
+	// Método consult posts
+	function consult() {
+		$this->layout = 'admin';
+		if($this->Admin->authAdmin()) {
+			
+		}
+	}
+	
 }
