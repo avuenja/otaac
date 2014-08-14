@@ -30,6 +30,5 @@ class Post extends AppModel {
 	
 	// Método beforeSave (Antes de salvar)
 	public function beforeSave($options = array()) {
-		$this->data['Post']['created_by'] = $this->Session->read('Account.id');
 	}
 }

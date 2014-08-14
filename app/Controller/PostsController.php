@@ -3,6 +3,7 @@ class PostsController extends AppController {
 	public $name = 'Posts'; // Nome do controller
 	public $uses = array('Post'); // Model usado pelo controller
 	public $helpers = array('Html', 'Form', 'Js'); // Helpers usados pela view
+	public $components = array('Paginator');
 
 	// Método de funções carregadas antes de qualquer coisa
 	function beforeFilter() {
@@ -11,14 +12,14 @@ class PostsController extends AppController {
 	
 	// Método index
 	function index() {
-		$posts = $this->Post->find( // Busca todos os registros
-			'all',
-			array(
-				'order' => array(
-					'Post.id' => 'DESC' // Traz o mais novo primeiro
-				)
-			)
-		);
+		$this->Paginator->settings = array( // Configurações de paginação
+			'order' => array('Post.id' => 'DESC'),
+	        'conditions' => array('Post.situation' => 'A'),
+	        'limit' => 5,
+	        'contain' => array('Account'),
+			'fields' => array('Post.title', 'Post.body', 'Post.created', 'Account.name')
+	    );
+		$posts = $this->Paginator->paginate('Post'); // Busca todos os registros
 		$this->set('posts', $posts); // Passa os dados da busca para a view
 	}
 	
@@ -53,6 +54,7 @@ class PostsController extends AppController {
 		if($this->Admin->authAdmin()) { // Componente de autorização
 			if($this->request->is('post')) { // Se a requisição for do tipo POST:
 				$this->Post->create(); // Cria o post no model
+				$this->request->data['Post']['created_by'] = $this->Session->read('Account.id'); // Adiciona quem esta logado como criador do post
 				if($this->Post->save($this->request->data)) { // Se salvar o POST:
 					return $this->redirect(array('action' => 'consult')); // Retorna verdadeiro (redireciona)
 				} else { // Se não:
