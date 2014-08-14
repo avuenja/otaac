@@ -8,7 +8,7 @@
 /build
 /dist
 /tags
-config.php
+/config.php
 
 # OS generated files #
 ######################
