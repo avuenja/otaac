@@ -76,6 +76,10 @@
 						<li <?php if($this->params['controller'] == 'accounts' && $this->params['action'] == 'change') { ?> class="active" <?php } ?>>
 							<a href="<?php echo url; ?>accounts/change/<?php echo $this->Session->read('Account.id'); ?>">Change account</a>
 						</li>
+						<?php if($this->Session->read('Account.type') >= 6) { // Se for um cargo administrativo: ?>
+						<li class="divider"></li>
+						<li><a href="<?php echo url; ?>admin">Admin Panel</a></li>
+						<?php } ?>
 						<li class="divider"></li>
 						<li><a href="<?php echo url; ?>accounts/logout">Log out</a></li>
 					</ul>
