@@ -22,11 +22,43 @@ class PostsController extends AppController {
 		$this->set('posts', $posts); // Passa os dados da busca para a view
 	}
 	
-	// Método consult posts
+	// Método consult posts (Acessivel apenas para administradores ou publicadores)
 	function consult() {
 		$this->layout = 'admin';
-		if($this->Admin->authAdmin()) {
-			
+		if($this->Admin->authAdmin()) { // Componente de autorização
+			$posts = $this->Post->find(
+				'all',
+				array(
+					'conditions' => array(
+						'Post.situation' => 'A'
+					),
+					'contain' => array(
+						'Account'
+					),
+					'fields' => array(
+						'Post.id',
+						'Post.title',
+						'Post.created',
+						'Account.name'
+					)
+				)
+			);
+			$this->set('posts', $posts); // Passando para a view os posts
+		}
+	}
+	
+	// Método create a post (Acessivel apenas para administradores ou publicadores)
+	function create() {
+		$this->layout = 'admin';
+		if($this->Admin->authAdmin()) { // Componente de autorização
+			if($this->request->is('post')) { // Se a requisição for do tipo POST:
+				$this->Post->create(); // Cria o post no model
+				if($this->Post->save($this->request->data)) { // Se salvar o POST:
+					return $this->redirect(array('action' => 'consult')); // Retorna verdadeiro (redireciona)
+				} else { // Se não:
+					return $this->Session->setFlash('Não foi possível criar seu post', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+				}
+			}
 		}
 	}
 	
