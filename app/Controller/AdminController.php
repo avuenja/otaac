@@ -11,7 +11,7 @@ class AdminController extends AppController {
 	
 	// Método index
 	function index() {
-		if($this->Admin->authAdmin()) {
+		if($this->OTAAC->authAdmin()) {
 			$this->loadModel('Player'); // Carrega o Model para ser usado
 			$this->loadModel('Account'); // Carrega o Model para ser usado
 			$this->loadModel('Post'); // Carrega o Model para ser usado

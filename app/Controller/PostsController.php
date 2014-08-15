@@ -25,7 +25,7 @@ class PostsController extends AppController {
 	
 	// Método consult posts (Acessivel apenas para administradores ou publicadores)
 	function consult() {
-		if($this->Admin->authAdmin()) { // Componente de autorização
+		if($this->OTAAC->authAdmin()) { // Componente de autorização
 			$posts = $this->Post->find(
 				'all',
 				array(
@@ -49,7 +49,7 @@ class PostsController extends AppController {
 	
 	// Método create a post (Acessivel apenas para administradores ou publicadores)
 	function create() {
-		if($this->Admin->authAdmin()) { // Componente de autorização
+		if($this->OTAAC->authAdmin()) { // Componente de autorização
 			if($this->request->is('post')) { // Se a requisição for do tipo POST:
 				$this->Post->create(); // Cria o post no model
 				$this->request->data['Post']['created_by'] = $this->Session->read('Account.id'); // Adiciona quem esta logado como criador do post
@@ -64,7 +64,7 @@ class PostsController extends AppController {
 	
 	// Método edit a post
 	function edit($id) {
-		if($this->Admin->authAdmin()) { // Componente de autorização
+		if($this->OTAAC->authAdmin()) { // Componente de autorização
 			$this->Post->id = $id; // Atribuimos o id passado para o id do registro
 			if($this->request->is('get')) { // Se a requisição for do tipo GET:
 				$this->request->data = $this->Post->read(); // Exibe na view
@@ -81,7 +81,7 @@ class PostsController extends AppController {
 	
 	// Método delete a post (Inactivate)
 	function delete($id) {
-		if($this->Admin->authAdmin()) { // Componente de autorização
+		if($this->OTAAC->authAdmin()) { // Componente de autorização
 			$this->Post->id = $id; // Atribuimos o id passado para o id do registro
 			$this->Post->updateAll( // Atualizamos o post com a situação para Inativa
 				array('Post.situation' => "'I'"),

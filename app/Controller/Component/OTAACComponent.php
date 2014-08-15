@@ -2,7 +2,7 @@
 /**
  * @author Marcelo S. Carvalho
  */
-class AdminComponent extends Component {
+class OTAACComponent extends Component {
 	public $components = array('Session'); // Componentes utilizado pelo componente
 	
 	// Método de inicialização
