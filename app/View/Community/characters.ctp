@@ -46,7 +46,7 @@
 					<td><?php echo (($character['Account']['premdays'] > 0) ? 'Premium account' : 'Free account'); ?></td>
 				</tr>
 			</tbody>
-		</table
+		</table>
 	</div>
 </div>
 <?php } ?>
