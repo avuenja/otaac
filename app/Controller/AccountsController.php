@@ -89,7 +89,6 @@ class AccountsController extends AppController {
 			if($this->request->is('get')) { // Se a requisição for do tipo GET:
 				$this->request->data = $this->Account->read(); // Exibe na view
 			} else { // Se não:
-				//$this->Account->create(); // Cria a conta no model
 				if($this->Account->save($this->request->data)) { // Se salvar a conta:
 					return $this->redirect('/'); // Retorna verdadeiro (redireciona)
 				} else { // Se não:
