@@ -62,4 +62,21 @@ class PostsController extends AppController {
 		}
 	}
 	
+	// Método edit a post
+	function edit($id) {
+		if($this->Admin->authAdmin()) { // Componente de autorização
+			$this->Post->id = $id; // Atribuimos o id passado para o id do registro
+			if($this->request->is('get')) { // Se a requisição for do tipo GET:
+				$this->request->data = $this->Post->read(); // Exibe na view
+			} else { // Se não:
+				if($this->Post->save($this->request->data)) { // Se salvar a conta:
+					$this->Session->setFlash('Post atualizado com sucesso!', 'default', array('class'=>'alert alert-success')); // Retorna sucesso
+					return $this->redirect(array('action' => 'consult')); // Retorna verdadeiro (redireciona)
+				} else { // Se não:
+					return $this->Session->setFlash('Não foi possível salvar sua conta', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+				}
+			}
+		}
+	}
+	
 }
