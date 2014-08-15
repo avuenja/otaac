@@ -143,4 +143,21 @@ class CommunityController extends AppController {
 		}
 	}
 	
+	// Método de guilds
+	function guilds() {
+		$this->loadModel('Guild');
+		$guilds = $this->Guild->find(
+			'all',
+			array(
+				'contain' => array('Player'),
+				'fields' => array(
+					'Guild.name',
+					'Guild.motd',
+					'Player.name'
+				)
+			)
+		);
+		$this->set('guilds', $guilds);
+	}
+	
 }
