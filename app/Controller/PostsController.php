@@ -79,4 +79,16 @@ class PostsController extends AppController {
 		}
 	}
 	
+	// Método delete a post (Inactivate)
+	function delete($id) {
+		if($this->Admin->authAdmin()) { // Componente de autorização
+			$this->Post->id = $id; // Atribuimos o id passado para o id do registro
+			$this->Post->updateAll( // Atualizamos o post com a situação para Inativa
+				array('Post.situation' => "'I'"),
+				array('Post.id' => $id)
+			);
+			return $this->redirect(array('action' => 'consult')); // Retorna verdadeiro (redireciona)
+		}
+	}
+	
 }

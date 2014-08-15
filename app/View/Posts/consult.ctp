@@ -26,7 +26,7 @@
 						<td><?php echo $post['Account']['name']; ?></td>
 						<td class="text-right">
 							<a href="<?php echo url.'posts/edit/'.$post['Post']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
-							<button type="button" class="btn btn-default btn-xs" title="Excluir"><span class="glyphicon glyphicon-trash"></span></button>
+							<a href="<?php echo url.'posts/delete/'.$post['Post']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Excluir"><span class="glyphicon glyphicon-trash"></span></a>
 						</td>
 					</tr>
 				<?php } ?>
