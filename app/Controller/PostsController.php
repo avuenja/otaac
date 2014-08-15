@@ -25,7 +25,6 @@ class PostsController extends AppController {
 	
 	// Método consult posts (Acessivel apenas para administradores ou publicadores)
 	function consult() {
-		$this->layout = 'admin';
 		if($this->Admin->authAdmin()) { // Componente de autorização
 			$posts = $this->Post->find(
 				'all',
@@ -50,7 +49,6 @@ class PostsController extends AppController {
 	
 	// Método create a post (Acessivel apenas para administradores ou publicadores)
 	function create() {
-		$this->layout = 'admin';
 		if($this->Admin->authAdmin()) { // Componente de autorização
 			if($this->request->is('post')) { // Se a requisição for do tipo POST:
 				$this->Post->create(); // Cria o post no model

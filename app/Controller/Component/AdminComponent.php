@@ -12,6 +12,7 @@ class AdminComponent extends Component {
 	
 	// Método de autorização administrativa
 	function authAdmin() {
+		$this->Controller->layout = 'admin'; // Sempre será o layout administrativo
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
 			if($this->Session->read('Account.type') >= 6) { // Se o type da conta for administrativo | type: 1 = Player; 6 = publisher; 9 = admin;
 				return true;

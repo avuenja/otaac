@@ -7,7 +7,6 @@ class AdminController extends AppController {
 	// Método de funções carregadas antes de qualquer coisa
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->layout = 'admin';
 	}
 	
 	// Método index
