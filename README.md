@@ -15,9 +15,9 @@ An AAC for Open Tibia Servers, made with 100% in CakePHP. Brings easier for admi
 * Code review
 * Report Issues
 
-#### Who do I talk to? ####
+#### Who will help the project? ####
 
-* [Development Team](https://github.com/Avuenja/OTAAC/wiki/Development-Team)
+* [Contributors](https://github.com/Avuenja/OTAAC/wiki/Contributors)
 
 #### Licensing ####
 
