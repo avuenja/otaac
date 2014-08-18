@@ -76,5 +76,26 @@ class PlayersController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não foi passado nenhum nome de player
 		}
 	}
+
+	// Método top five player
+	function top5() {
+		$this->autoRender = false;
+		return $this->Player->find(
+			'list',
+			array(
+				'conditions' => array(
+					'Player.deletion' => 0
+				),
+				'fields' => array(
+					'Player.name',
+					'Player.level'
+				),
+				'limit' => 5,
+				'order' => array(
+					'Player.level' => 'DESC'
+				)
+			)
+		);
+	}
 	
 }

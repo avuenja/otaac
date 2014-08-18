@@ -1,3 +1,7 @@
+<?php
+$players = $this->requestAction('/players/top5');
+$position = 1;
+?>
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h4 class="panel-title">
@@ -9,26 +13,14 @@
 	<div id="collapseTop" class="panel-collapse collapse" style="height: 0px;">
 		<table class="table table-condensed table-content table-striped">
 			<tbody>
-				<tr>
-					<td style="width: 80%"><strong>1.</strong> <a href="<?php echo url; ?>character/Avuenja">Avuenja</a></td>
-					<td><span class="label label-info">Lvl. 499</span></td>
-				</tr>
-				<tr>
-					<td style="width: 80%"><strong>2.</strong> <a href="<?php echo url; ?>character/Lordfire">Lordfire</a></td>
-					<td><span class="label label-info">Lvl. 434</span></td>
-				</tr>
-				<tr>
-					<td style="width: 80%"><strong>3.</strong> <a href="<?php echo url; ?>character/Alex">Alex</a></td>
-					<td><span class="label label-info">Lvl. 429</span></td>
-				</tr>
-				<tr>
-					<td style="width: 80%"><strong>4.</strong> <a href="<?php echo url; ?>character/Beeki">Beeki</a></td>
-					<td><span class="label label-info">Lvl. 427</span></td>
-				</tr>
-				<tr>
-					<td style="width: 80%"><strong>5.</strong> <a href="<?php echo url; ?>character/Renato">Renato</a></td>
-					<td><span class="label label-info">Lvl. 426</span></td>
-				</tr>
+				<?php foreach ($players as $name => $level) { ?>
+					<tr>
+						<td style="width: 80%"><strong><?php echo $position; ?>.</strong> <a href="<?php echo url; ?>character/<?php echo $name; ?>"><?php echo $name; ?></a></td>
+						<td><span class="label label-info">Lvl. <?php echo $level; ?></span></td>
+					</tr>
+				<?php 
+					$position++;
+				} ?>
 			</tbody>
 		</table>
 	</div>

@@ -26,7 +26,7 @@ class OTAACComponent extends Component {
 		}
 	}
 	
-	// Método de verificação de conta, se o conteúdo desejado é permitido para aquela conta...
+	// Método de verificação de conta, se o conteúdo desejado é permitido para aquela conta... (O método espera o $id de verificação da edição)
 	function authAccount($id) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
 			if($id == $this->Session->read('Account.id')) {
