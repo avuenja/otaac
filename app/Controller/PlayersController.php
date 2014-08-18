@@ -77,6 +77,36 @@ class PlayersController extends AppController {
 		}
 	}
 
+	// Método de desativação de player
+	function delete($id) {
+		if($this->Session->check('Account')) { // Se existe uma sessão criada:
+			$player = $this->Player->find(
+				'first', 
+				array(
+					'conditions' => array(
+						'Player.id' => $id
+					),
+					'fields' => array(
+						'Player.account_id'
+					)
+				)
+			);
+			if($player['Player']['account_id'] == $this->Session->read('Account.id')) {
+				$this->Player->id = $id; // Atribuimos o id passado para o id do registro
+				$this->Player->updateAll( // Atualizamos o player com o deletion para 1
+					array('Player.deletion' => 1),
+					array('Player.id' => $id)
+				);
+				return $this->redirect(array('controller' => 'accounts', 'action' => 'manager')); // Retorna verdadeiro (redireciona)
+			} else {
+				$this->Session->setFlash('Você não tem permissão para isto!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+				return $this->redirect(array('controller' => 'accounts', 'action' => 'manager')); // Redireciona pois não tem permissão
+			}
+		} else { // Se não:
+			return $this->redirect('/'); // Redireciona pois não tem permissão
+		}
+	}
+
 	// Método top five player
 	function top5() {
 		$this->autoRender = false;

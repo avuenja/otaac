@@ -61,9 +61,11 @@ class AccountsController extends AppController {
 				'all', 
 				array(
 					'conditions' => array( // Condições de busca
-						'Player.account_id' => $this->Session->read('Account.id')
+						'Player.account_id' => $this->Session->read('Account.id'),
+						'Player.deletion' => 0
 					),
 					'fields' => array( // Campos trazidos
+						'Player.id',
 						'Player.name',
 						'Player.vocation',
 						'Player.level',

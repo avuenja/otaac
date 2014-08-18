@@ -8,7 +8,7 @@
 					<th>Vocation</th>
 					<th>Level</th>
 					<th>Last login</th>
-					<th>Action</th>
+					<th class="text-center">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -22,7 +22,7 @@
 						echo '<td>'.$vocation[$character['Player']['vocation']].'</td>';
 						echo '<td>'.$character['Player']['level'].'</td>';
 						echo '<td>'.((!$character['Player']['lastlogin']) ? 'Nunca logou' : $character['Player']['lastlogin']).'</td>';
-						echo '<td><button type="button" class="btn btn-default btn-xs" title="Editar"><span class="glyphicon glyphicon-pencil"></span></button><button type="button" class="btn btn-default btn-xs" title="Excluir"><span class="glyphicon glyphicon-trash"></span></button></td>';
+						echo '<td class="text-center"><a href="'.url.'players/delete/'.$character['Player']['id'].'" type="button" class="btn btn-default btn-xs" title="Excluir"><span class="glyphicon glyphicon-trash"></span></a></td>';
 						echo '</tr>';
 					}
 				}
