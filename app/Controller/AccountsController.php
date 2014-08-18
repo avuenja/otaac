@@ -84,23 +84,17 @@ class AccountsController extends AppController {
 	
 	// Método de change account
 	function change($id) {
-		if($this->Session->check('Account')) { // Se existe uma sessão criada:
-			if($id == $this->Session->read('Account.id')) {
-				$this->Account->id = $id; // Atribuimos o id passado para o id do registro
-				if($this->request->is('get')) { // Se a requisição for do tipo GET:
-					$this->request->data = $this->Account->read(); // Exibe na view
+		if($this->OTAAC->authAccount($id)) { // Componente de autorização de conta
+			$this->Account->id = $id; // Atribuimos o id passado para o id do registro
+			if($this->request->is('get')) { // Se a requisição for do tipo GET:
+				$this->request->data = $this->Account->read(); // Exibe na view
+			} else { // Se não:
+				if($this->Account->save($this->request->data)) { // Se salvar a conta:
+					return $this->redirect('/'); // Retorna verdadeiro (redireciona)
 				} else { // Se não:
-					if($this->Account->save($this->request->data)) { // Se salvar a conta:
-						return $this->redirect('/'); // Retorna verdadeiro (redireciona)
-					} else { // Se não:
-						return $this->Session->setFlash('Não foi possível salvar sua conta', 'default', array('class'=>'alert alert-danger')); // Retorna erro
-					}
+					return $this->Session->setFlash('Não foi possível salvar sua conta', 'default', array('class'=>'alert alert-danger')); // Retorna erro
 				}
-			} else {
-				return $this->redirect(array('action' => 'manager')); // Redireciona pois não tem permissão
 			}
-		} else { // Se não:
-			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
 

@@ -25,4 +25,18 @@ class OTAACComponent extends Component {
 			return $this->Controller->redirect(array('controller' => 'accounts', 'action' => 'login')); // Redireciona pois não esta logado
 		}
 	}
+	
+	// Método de verificação de conta, se o conteúdo desejado é permitido para aquela conta...
+	function authAccount($id) {
+		if($this->Session->check('Account')) { // Se existe uma sessão criada:
+			if($id == $this->Session->read('Account.id')) {
+				return true;
+			} else {
+				return $this->Controller->redirect(array('action' => 'manager')); // Redireciona pois não tem permissão
+			}
+		} else { // Se não:
+			return $this->Controller->redirect('/'); // Redireciona pois não tem permissão
+		}
+	}
+	
 }
