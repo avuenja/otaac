@@ -125,6 +125,7 @@ class GuildsController extends AppController {
 			if(!empty($guildOwner)) { // Se ele é o dono da guild
 				$this->set('guild', $guildOwner); // Passa o nome da guild para a view
 				// Código de manage guild AQUI!!
+				
 			} else { // Se não:
 				$this->Session->setFlash('Você não é o dono desta guild!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
 				return $this->redirect(array('action' => 'index')); // Retorna erro (redireciona)
