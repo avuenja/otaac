@@ -106,4 +106,9 @@ class GuildsController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
+
+	// Método de manage de guild
+	function manage($id) {
+		
+	}
 }
