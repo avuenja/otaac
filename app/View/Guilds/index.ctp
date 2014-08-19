@@ -31,7 +31,7 @@
 								<?php if($this->Session->read('Account.name') == $guild['Player']['name']){ // Se quem estiver logado for o dono da guilda ?>
 									<a href="" type="button" class="btn btn-default btn-xs" title="Gerenciar"><span class="glyphicon glyphicon-wrench"></span></a>
 								<?php } if($this->Session->read('Account.name') != $guild['Player']['name']) { // Se quem estiver logado não for o dono da guilda ?>
-									<a href="<?php echo url; ?>guilds/invite" type="button" class="btn btn-default btn-xs" title="Invite"><span class="glyphicon glyphicon-share-alt"></span></a>
+									<a href="<?php echo url; ?>guilds/invite/<?php echo $guild['Guild']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Invite"><span class="glyphicon glyphicon-share-alt"></span></a>
 								<?php } ?>
 							</td>
 						<?php } ?>
