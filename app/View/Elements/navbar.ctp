@@ -16,7 +16,7 @@
 				<li <?php if($this->params['controller'] == 'posts' && $this->params['action'] == 'index') { ?> class="active" <?php } ?>>
 					<a href="<?php echo url; ?>">Home</a>
 				</li>
-				<li <?php if($this->params['controller'] == 'community') { ?> class="active" <?php } ?> class="dropdown">
+				<li <?php if($this->params['controller'] == 'community' || $this->params['controller'] == 'guilds') { ?> class="active" <?php } ?> class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Community <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'characters') { ?> class="active" <?php } ?>>
@@ -29,8 +29,8 @@
 							<a href="<?php echo url; ?>community/houses">Houses</a>
 						</li>
 						<li class="divider"></li>
-						<li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'guilds') { ?> class="active" <?php } ?>>
-							<a href="<?php echo url; ?>community/guilds">Guilds</a>
+						<li <?php if($this->params['controller'] == 'guilds') { ?> class="active" <?php } ?>>
+							<a href="<?php echo url; ?>guilds">Guilds</a>
 						</li>
 						<li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'guild_war') { ?> class="active" <?php } ?>>
 							<a href="<?php echo url; ?>community/guild_war">Guild War</a>

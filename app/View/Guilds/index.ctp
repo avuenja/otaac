@@ -7,7 +7,7 @@
 					<th colspan="3">Guilds list</th>
 					<?php if($this->Session->check('Account')) { ?>
 						<th class="text-right">
-							<a href="<?php echo url; ?>posts/create" type="button" class="btn btn-success btn-xs">Create your Guild</a>
+							<a href="<?php echo url; ?>guilds/create" type="button" class="btn btn-success btn-xs">Create your Guild</a>
 						</th>
 					<?php } ?>
 				</tr>
@@ -28,8 +28,11 @@
 						<td><?php echo $guild['Player']['name']; ?></td>
 						<?php if($this->Session->check('Account')) { ?>
 							<td class="text-right">
-								<a href="" type="button" class="btn btn-default btn-xs" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
-								<a href="" type="button" class="btn btn-default btn-xs" title="Excluir"><span class="glyphicon glyphicon-trash"></span></a>
+								<?php if($this->Session->read('Account.name') == $guild['Player']['name']){ // Se quem estiver logado for o dono da guilda ?>
+									<a href="" type="button" class="btn btn-default btn-xs" title="Gerenciar"><span class="glyphicon glyphicon-wrench"></span></a>
+								<?php } if($this->Session->read('Account.name') != $guild['Player']['name']) { // Se quem estiver logado não for o dono da guilda ?>
+									<a href="<?php echo url; ?>guilds/invite" type="button" class="btn btn-default btn-xs" title="Invite"><span class="glyphicon glyphicon-share-alt"></span></a>
+								<?php } ?>
 							</td>
 						<?php } ?>
 					</tr>

@@ -10,20 +10,30 @@ class Guild extends AppModel {
         )
     );
 	public $validate = array( // Validação
-		'title' => array(
+		'name' => array(
 			'required' => array(
 				'rule' => 'notEmpty',
-				'message' => 'O titulo não pode ficar em branco!'
+				'message' => 'O nome da guild não pode ficar em branco!'
 			),
 			'between' => array(
-				'rule' => array('between', 3, 80),
-				'message' => 'Só é permitido titulos entre 3 e 80 caracteres.'
+				'rule' => array('between', 3, 50),
+				'message' => 'Só é permitido nomes de guilds entre 3 e 50 caracteres.'
+			),
+			'unique' => array(
+				'rule' => 'isUnique',
+				'message' => 'O nome da guild já existe!'
 			)
 		),
-		'body' => array(
+		'ownerid' => array(
 			'required' => array(
 				'rule' => 'notEmpty',
-				'message' => 'O conteúdo não pode ficar em branco!'
+				'message' => 'O dono da guild não pode ficar em branco!'
+			)
+		),
+		'motd' => array(
+			'required' => array(
+				'rule' => 'notEmpty',
+				'message' => 'O motd da guild não pode ficar em branco!'
 			)
 		)
 	);
