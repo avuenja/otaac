@@ -66,8 +66,19 @@ class GuildsController extends AppController {
 	// Método de invite a guild
 	function invite($id) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
-			$guildOwner = $this->Guild->find('first', array('conditions' => array('Guild.ownerid' => $this->Session->read('Account.id'), 'Guild.id' => $id)));
-			if(empty($guildOwner)) {
+			$guildOwner = $this->Guild->find( // Busca se ele é o dono ou não da guild
+				'first', 
+				array(
+					'conditions' => array(
+						'Guild.ownerid' => $this->Session->read('Account.id'), 
+						'Guild.id' => $id
+					),
+					'fields' => array(
+						'Guild.id'
+					)
+				)
+			);
+			if(empty($guildOwner)) { // Se vazio:
 				$this->loadModel('Player'); // Carrega o model dos Players
 				$characters = $this->Player->find( // Busca os characters relacionado a conta do usuario logado
 					'list', 
@@ -109,6 +120,17 @@ class GuildsController extends AppController {
 
 	// Método de manage de guild
 	function manage($id) {
-		
+		if($this->Session->check('Account')) { // Se existe uma sessão criada:
+			$guildOwner = $this->Guild->find('first', array('conditions' => array('Guild.ownerid' => $this->Session->read('Account.id'), 'Guild.id' => $id), 'fields' => array('Guild.name'))); // Busca se ele é o dono ou não da guild
+			if(!empty($guildOwner)) { // Se ele é o dono da guild
+				$this->set('guild', $guildOwner); // Passa o nome da guild para a view
+				// Código de manage guild AQUI!!
+			} else { // Se não:
+				$this->Session->setFlash('Você não é o dono desta guild!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+				return $this->redirect(array('action' => 'index')); // Retorna erro (redireciona)
+			}
+		} else { // Se não:
+			return $this->redirect('/'); // Redireciona pois não tem permissão
+		}
 	}
 }
