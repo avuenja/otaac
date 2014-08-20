@@ -1,6 +1,6 @@
 <?php $this->set('title_for_layout', 'Invite a guild'); // Titulo da pagina ?>
 <div class="panel panel-default panel-body">
-	<?php echo $this->Form->create('Guild', array('class' => 'form-horizontal')); ?>
+	<?php echo $this->Form->create('GuildInvite', array('class' => 'form-horizontal')); ?>
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Player invite:</label>
 		<div class="col-sm-9">

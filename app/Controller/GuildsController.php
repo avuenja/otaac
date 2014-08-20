@@ -95,18 +95,20 @@ class GuildsController extends AppController {
 				);
 				$this->set('characters', $characters); // Seta os dados para a view
 				if($this->request->is('post')) { // Se a requisição for do tipo POST:
-					$countGuild = $this->Guild->find('count', array('conditions' => array('Guild.ownerid' => $this->request->data['Guild']['player_id']))); // Verifica se o player selecionado não tem guild ainda
-					$countGuildMember = $this->GuildMember->find('count', array('conditions' => array('GuildMember.player_id' => $this->request->data['Guild']['player_id']))); // Verifica se o player selecionado não tem guild ainda
-					if($countGuild == 0 && $countGuildMember == 0) { // Se não faz parte de nenhuma guild:
+					$this->request->data['GuildInvite']['guild_id'] = $id; // Pega o id da guild
+					$countGuild = $this->Guild->find('count', array('conditions' => array('Guild.ownerid' => $this->request->data['GuildInvite']['player_id']))); // Verifica se o player selecionado não tem guild ainda
+					$countGuildMember = $this->GuildMember->find('count', array('conditions' => array('GuildMember.player_id' => $this->request->data['GuildInvite']['player_id']))); // Verifica se o player selecionado não tem guild ainda
+					$countGuildInvite = $this->GuildInvite->find('count', array('conditions' => array('GuildInvite.player_id' => $this->request->data['GuildInvite']['player_id']), 'fields' => array('GuildInvite.guild_id' => $id))); // Verifica se o player selecionado não tem guild ainda
+					if($countGuild == 0 && $countGuildMember == 0 && $countGuildInvite == 0) { // Se não faz parte de nenhuma guild:
 						$this->GuildInvite->create(); // Cria o registro no model
-						$this->request->data['Guild']['guild_id'] = $id;
+						// pr($this->request->data);exit();
 						if($this->GuildInvite->save($this->request->data)) { // Se salvar o registro:
 							return $this->redirect(array('action' => 'index')); // Retorna verdadeiro (redireciona)
 						} else { // Se não:
 							return $this->Session->setFlash('Não foi possível enviar sua solicitação!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
 						}
 					} else {
-						return $this->Session->setFlash('Você não pode enviar um convite a guild, você já faz parte de uma!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+						return $this->Session->setFlash('Você não pode enviar um convite a guild, você já faz parte de uma ou já mandou o convite para a mesma!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
 					}
 				}
 			} else {
