@@ -98,7 +98,7 @@ class GuildsController extends AppController {
 					$this->request->data['GuildInvite']['guild_id'] = $id; // Pega o id da guild
 					$countGuild = $this->Guild->find('count', array('conditions' => array('Guild.ownerid' => $this->request->data['GuildInvite']['player_id']))); // Verifica se o player selecionado não tem guild ainda
 					$countGuildMember = $this->GuildMember->find('count', array('conditions' => array('GuildMember.player_id' => $this->request->data['GuildInvite']['player_id']))); // Verifica se o player selecionado não tem guild ainda
-					$countGuildInvite = $this->GuildInvite->find('count', array('conditions' => array('GuildInvite.player_id' => $this->request->data['GuildInvite']['player_id']), 'fields' => array('GuildInvite.guild_id' => $id))); // Verifica se o player selecionado não tem guild ainda
+					$countGuildInvite = $this->GuildInvite->find('count', array('conditions' => array('GuildInvite.player_id' => $this->request->data['GuildInvite']['player_id'], 'GuildInvite.guild_id' => $id), 'fields' => array('GuildInvite.guild_id' => $id))); // Verifica se o player selecionado não tem guild ainda
 					if($countGuild == 0 && $countGuildMember == 0 && $countGuildInvite == 0) { // Se não faz parte de nenhuma guild:
 						$this->GuildInvite->create(); // Cria o registro no model
 						// pr($this->request->data);exit();
@@ -138,7 +138,8 @@ class GuildsController extends AppController {
 						),
 						'fields' => array(
 							'Player.id',
-							'Player.name'
+							'Player.name',
+							'Guild.id'
 						)
 					)
 				);
@@ -160,6 +161,17 @@ class GuildsController extends AppController {
 			} else { // Se não:
 				$this->Session->setFlash('Você não é o dono desta guild!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
 				return $this->redirect(array('action' => 'index')); // Retorna erro (redireciona)
+			}
+		} else { // Se não:
+			return $this->redirect('/'); // Redireciona pois não tem permissão
+		}
+	}
+
+	// Método de delete de invite
+	function delete_invite($pid, $gid) {
+		if($this->Session->check('Account')) { // Se existe uma sessão criada:
+			if($this->GuildInvite->deleteAll(array('GuildInvite.player_id' => $pid, 'GuildInvite.guild_id' => $gid), false)) {
+				return $this->redirect(array('action' => 'manage', $gid)); // Retorna erro (redireciona)
 			}
 		} else { // Se não:
 			return $this->redirect('/'); // Redireciona pois não tem permissão
