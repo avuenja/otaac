@@ -45,8 +45,10 @@ class AccountsController extends AppController {
 					$accountSession = $this->Session->write('Account.id', $account['Account']['id']);
 					$accountSession = $this->Session->write('Account.name', $account['Account']['name']);
 					$accountSession = $this->Session->write('Account.type', $account['Account']['type']);
-					$accountSession = $this->Session->write('Account.guild_id', $guildOwner['Guild']['id']);
-					$accountSession = $this->Session->write('Account.guild', $guildOwner['Guild']['name']);
+					if(!empty($guildOwner)) {
+						$accountSession = $this->Session->write('Account.guild_id', $guildOwner['Guild']['id']);
+						$accountSession = $this->Session->write('Account.guild', $guildOwner['Guild']['name']);
+					}
 					$this->redirect(array('action' => 'manager'));
 				} else { // Se não:
 					$this->Session->destroy(); // Destrói a sessão
