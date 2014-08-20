@@ -76,6 +76,10 @@
 						<li <?php if($this->params['controller'] == 'accounts' && $this->params['action'] == 'change') { ?> class="active" <?php } ?>>
 							<a href="<?php echo url; ?>accounts/change/<?php echo $this->Session->read('Account.id'); ?>">Change account</a>
 						</li>
+						<?php if(!empty($this->Session->read('Account.guild_id'))) { // Se for um cargo administrativo: ?>
+						<li class="divider"></li>
+						<li><a href="<?php echo url; ?>guilds/manage/<?php echo $this->Session->read('Account.guild_id'); ?>">Manage <b><?php echo $this->Session->read('Account.guild'); ?></b> guild</a></li>
+						<?php } ?>
 						<?php if($this->Session->read('Account.type') >= 6) { // Se for um cargo administrativo: ?>
 						<li class="divider"></li>
 						<li><a href="<?php echo url; ?>admin">Admin Panel</a></li>

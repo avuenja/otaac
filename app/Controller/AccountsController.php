@@ -39,10 +39,14 @@ class AccountsController extends AppController {
 				)
 			);
 			if(!empty($account)) { // Se a conta existe:
+				$this->loadModel('Guild');
+				$guildOwner = $this->Guild->find('first', array('conditions' => array('Guild.ownerid' => $account['Account']['id']), 'fields' => array('Guild.id','Guild.name'))); // Busca se ele é o dono ou não da guild
 				if(!$this->Session->check('Account')) { // Se não existe nenhuma sessão criada:
 					$accountSession = $this->Session->write('Account.id', $account['Account']['id']);
 					$accountSession = $this->Session->write('Account.name', $account['Account']['name']);
 					$accountSession = $this->Session->write('Account.type', $account['Account']['type']);
+					$accountSession = $this->Session->write('Account.guild_id', $guildOwner['Guild']['id']);
+					$accountSession = $this->Session->write('Account.guild', $guildOwner['Guild']['name']);
 					$this->redirect(array('action' => 'manager'));
 				} else { // Se não:
 					$this->Session->destroy(); // Destrói a sessão
