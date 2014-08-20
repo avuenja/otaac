@@ -126,8 +126,37 @@ class GuildsController extends AppController {
 			$guildOwner = $this->Guild->find('first', array('conditions' => array('Guild.ownerid' => $this->Session->read('Account.id'), 'Guild.id' => $id), 'fields' => array('Guild.name'))); // Busca se ele é o dono ou não da guild
 			if(!empty($guildOwner)) { // Se ele é o dono da guild
 				$this->set('guild', $guildOwner); // Passa o nome da guild para a view
-				// Código de manage guild AQUI!!
-				
+				$guildInvites = $this->GuildInvite->find( // Busca os convites de players para esta guild
+					'all', 
+					array(
+						'conditions' => array(
+							'GuildInvite.guild_id' => $id
+						),
+						'contain' => array(
+							'Player',
+							'Guild'
+						),
+						'fields' => array(
+							'Player.id',
+							'Player.name'
+						)
+					)
+				);
+				$this->set('guildInvites', $guildInvites); // Seta os convites para a view
+				$guilInfo = $this->Guild->find(
+					'first',
+					array(
+						'conditions' => array(
+							'Guild.id' => $id
+						),
+						'fields' => array(
+							'Guild.id',
+							'Guild.name',
+							'Guild.motd'
+						)
+					)
+				);
+				$this->set('guildInfo', $guilInfo);
 			} else { // Se não:
 				$this->Session->setFlash('Você não é o dono desta guild!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
 				return $this->redirect(array('action' => 'index')); // Retorna erro (redireciona)
