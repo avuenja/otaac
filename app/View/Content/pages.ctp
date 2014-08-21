@@ -6,7 +6,7 @@
 				<thead>
 					<th>Page list</th>
 					<th class="text-right">
-						<a href="<?php echo url; ?>admin/page_create" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> New page</a>
+						<a href="<?php echo url; ?>content/page_create" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> New page</a>
 					</th>
 				</thead>
 				<tbody>
@@ -14,10 +14,10 @@
 					<tr>
 						<td><?php echo ucfirst($page); ?></td>
 						<td class="text-right">
-							<a href="<?php echo url; ?>admin/page_edit/<?php echo $page; ?>" type="button" class="btn btn-default btn-xs" title="Editar">
+							<a href="<?php echo url; ?>content/page_edit/<?php echo $page; ?>" type="button" class="btn btn-default btn-xs" title="Editar">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</a>
-							<a href="<?php echo url; ?>admin/page_delete/<?php echo $page; ?>" type="button" class="btn btn-default btn-xs" title="Excluir">
+							<a href="<?php echo url; ?>content/page_delete/<?php echo $page; ?>" type="button" class="btn btn-default btn-xs" title="Excluir">
 								<span class="glyphicon glyphicon-trash"></span>
 							</a>
 						</td>
