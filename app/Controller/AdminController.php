@@ -31,7 +31,8 @@ class AdminController extends AppController {
 			$this->set('posts', $posts);
 		}
 	}
-
+	
+	// Função de visualização de páginas
 	function pages() {
 		if($this->OTAAC->authAdmin()) {
 			$data = array();
