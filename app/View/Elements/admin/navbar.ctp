@@ -16,15 +16,15 @@
 				<li <?php if($this->params['controller'] == 'admin' && $this->params['action'] == 'index') { ?> class="active" <?php } ?>>
 					<a href="<?php echo url; ?>admin">Dashboard</a>
 				</li>
-				<li <?php if($this->params['controller'] == 'posts' || $this->params['controller'] == 'admin') { ?> class="active" <?php } ?> class="dropdown">
+				<li <?php if($this->params['controller'] == 'posts' || $this->params['controller'] == 'content') { ?> class="active" <?php } ?> class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Content <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li <?php if($this->params['controller'] == 'posts' && $this->params['action'] == 'consult') { ?> class="active" <?php } ?>>
 							<a href="<?php echo url; ?>posts/consult">Posts</a>
 						</li>
 						<li class="divider"></li>
-						<li <?php if($this->params['controller'] == 'admin' && $this->params['action'] == 'pages') { ?> class="active" <?php } ?>>
-							<a href="<?php echo url; ?>admin/pages">Pages</a>
+						<li <?php if($this->params['controller'] == 'content' && $this->params['action'] == 'pages') { ?> class="active" <?php } ?>>
+							<a href="<?php echo url; ?>content/pages">Pages</a>
 						</li>
 					</ul>
 				</li>
