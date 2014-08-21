@@ -24,7 +24,7 @@
 						</li>
 						<li class="divider"></li>
 						<li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'guilds') { ?> class="active" <?php } ?>>
-							<a href="<?php echo url; ?>content/pages">Pages</a>
+							<a href="<?php echo url; ?>admin/pages">Pages</a>
 						</li>
 					</ul>
 				</li>

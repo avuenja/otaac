@@ -31,5 +31,16 @@ class AdminController extends AppController {
 			$this->set('posts', $posts);
 		}
 	}
+
+	function pages() {
+		if($this->OTAAC->authAdmin()) {
+			$data = array();
+			foreach(glob('../View/Pages/*.ctp') as $page) {
+				$page = str_replace(array('../View/Pages/', '.ctp'), '', $page);
+				$data['pages'][] = $page;
+			}
+			$this->set('pages', $data);
+		}
+	}
 	
 }
