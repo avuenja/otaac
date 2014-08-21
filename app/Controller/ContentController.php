@@ -11,13 +11,20 @@ class ContentController extends AppController {
 	
 	// Função de visualização de páginas
 	function pages() {
-		if($this->OTAAC->authAdmin()) {
-			$data = array();
-			foreach(glob('../View/Pages/*.ctp') as $page) {
-				$page = str_replace(array('../View/Pages/', '.ctp'), '', $page);
-				$data['pages'][] = $page;
+		if($this->OTAAC->authAdmin()) { // Componente de autenticação
+			$data = array(); // Cria um array de dados vazio
+			foreach(glob('../View/Pages/*.ctp') as $page) { // Percorre as páginas existentes em View/Pages
+				$page = str_replace(array('../View/Pages/', '.ctp'), '', $page); // Pega o nome da página
+				$data['pages'][] = $page; // Guarda em um array
 			}
-			$this->set('pages', $data);
+			$this->set('pages', $data); // Seta paa a view
+		}
+	}
+	
+	// Função de criação de nova página
+	function page_create() {
+		if($this->OTAAC->authAdmin()) { // Componente de autenticação
+			
 		}
 	}
 }
