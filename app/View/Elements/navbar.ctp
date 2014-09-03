@@ -76,7 +76,12 @@
 						<li <?php if($this->params['controller'] == 'accounts' && $this->params['action'] == 'change') { ?> class="active" <?php } ?>>
 							<a href="<?php echo url; ?>accounts/change/<?php echo $this->Session->read('Account.id'); ?>">Change account</a>
 						</li>
-						<?php if($this->Session->read('Account.type') >= 6) { // Se for um cargo administrativo: ?>
+						<?php if(tfs === '1.0') {
+							$type = 'type';
+						} else if(tfs === '0.3.6') {
+							$type = 'group_id';
+						}
+						if($this->Session->read('Account.'.$type) >= 6) { // Se for um cargo administrativo: ?>
 						<li class="divider"></li>
 						<li><a href="<?php echo url; ?>admin">Admin Panel</a></li>
 						<?php } ?>
