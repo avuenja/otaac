@@ -14,7 +14,12 @@ class OTAACComponent extends Component {
 	function authAdmin() {
 		$this->Controller->layout = 'admin'; // Sempre será o layout administrativo
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
-			if($this->Session->read('Account.type') >= 6) { // Se o type da conta for administrativo | type: 1 = Player; 6 = publisher; 9 = admin;
+			if(tfs === '1.0') {
+				$type = 'type';
+			} else if(tfs === '0.3.6') {
+				$type = 'group_id';
+			}
+			if($this->Session->read('Account.'.$type) >= 6) { // Se o type da conta for administrativo | type: 1 = Player; 6 = publisher; 9 = admin;
 				return true;
 			} else { // Se não:
 				$this->Session->setFlash('Você não tem permissão para acessar a área solicitada!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
