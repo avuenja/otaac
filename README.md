@@ -21,4 +21,4 @@ An AAC for Open Tibia Servers, made with 100% in CakePHP. Brings easier for admi
 
 #### Licensing ####
 
-OTAAC is made available under the Affero GPL
+OTAAC is made available under the MIT License, thus this means that you are free to do whatever you want, commercial, non-commercial, closed or open.
