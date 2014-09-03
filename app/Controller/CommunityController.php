@@ -100,11 +100,16 @@ class CommunityController extends AppController {
 				$orderName = 'Experience'; // Nome padrão do sort
 			}
 			$this->loadModel('Player'); // Carrega o Model para ser usado
+			if(tfs === '1.0') {
+				$situacao = 'deletion';
+			} else if(tfs === '0.3.6') {
+				$situacao = 'deleted';
+			}
 			$characters = $this->Player->find( // Busca os characters relacionado a conta do usuario logado
 				'all', 
 				array(
 					'conditions' => array( // Condições de busca
-						'Player.deletion' => 0
+						'Player.'.$situacao => 0
 					),
 					'contain' => array( // Tabelas associadas
 						'Account'

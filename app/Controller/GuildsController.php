@@ -30,12 +30,17 @@ class GuildsController extends AppController {
 	function create() {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
 			$this->loadModel('Player'); // Carrega o model dos Players
+			if(tfs === '1.0') {
+				$situacao = 'deletion';
+			} else if(tfs === '0.3.6') {
+				$situacao = 'deleted';
+			}
 			$characters = $this->Player->find( // Busca os characters relacionado a conta do usuario logado
 				'list', 
 				array(
 					'conditions' => array( // Condições de busca
 						'Player.account_id' => $this->Session->read('Account.id'),
-						'Player.deletion' => 0
+						'Player.'.$situacao => 0
 					),
 					'fields' => array( // Campos trazidos
 						'Player.id',
@@ -80,12 +85,17 @@ class GuildsController extends AppController {
 			);
 			if(empty($guildOwner)) { // Se vazio:
 				$this->loadModel('Player'); // Carrega o model dos Players
+				if(tfs === '1.0') {
+					$situacao = 'deletion';
+				} else if(tfs === '0.3.6') {
+					$situacao = 'deleted';
+				}
 				$characters = $this->Player->find( // Busca os characters relacionado a conta do usuario logado
 					'list', 
 					array(
 						'conditions' => array( // Condições de busca
 							'Player.account_id' => $this->Session->read('Account.id'),
-							'Player.deletion' => 0
+							'Player.'.$situacao => 0
 						),
 						'fields' => array( // Campos trazidos
 							'Player.id',
