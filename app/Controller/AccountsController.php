@@ -24,6 +24,11 @@ class AccountsController extends AppController {
 	// Método de login
 	function login() {
 		if($this->request->is('post')) { // Se a requisição for do tipo POST:
+			if(tfs === '1.0') {
+				$type = 'type';
+			} else if(tfs === '0.3.6') {
+				$type = 'group_id';
+			}
 			$account = $this->Account->find( // Busca a conta no banco de dados
 				'first',
 				array(
@@ -34,7 +39,7 @@ class AccountsController extends AppController {
 					'fields' => array( // Campos que serão trazidos
 						'Account.id',
 						'Account.name',
-						'Account.type'
+						'Account.'.$type
 					)
 				)
 			);
@@ -42,7 +47,7 @@ class AccountsController extends AppController {
 				if(!$this->Session->check('Account')) { // Se não existe nenhuma sessão criada:
 					$accountSession = $this->Session->write('Account.id', $account['Account']['id']);
 					$accountSession = $this->Session->write('Account.name', $account['Account']['name']);
-					$accountSession = $this->Session->write('Account.type', $account['Account']['type']);
+					$accountSession = $this->Session->write('Account.'.$type, $account['Account'][$type]);
 					$this->redirect(array('action' => 'manager'));
 				} else { // Se não:
 					$this->Session->destroy(); // Destrói a sessão
@@ -57,12 +62,17 @@ class AccountsController extends AppController {
 	function manager() {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
 			$this->loadModel('Player'); // Carrega o model dos Players
+			if(tfs === '1.0') {
+				$situacao = 'deletion';
+			} else if(tfs === '0.3.6') {
+				$situacao = 'deleted';
+			}
 			$characters = $this->Player->find( // Busca os characters relacionado a conta do usuario logado
 				'all', 
 				array(
 					'conditions' => array( // Condições de busca
 						'Player.account_id' => $this->Session->read('Account.id'),
-						'Player.deletion' => 0
+						'Player.'.$situacao => 0
 					),
 					'fields' => array( // Campos trazidos
 						'Player.id',
