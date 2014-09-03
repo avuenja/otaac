@@ -5,7 +5,7 @@ $config['Database'] = array(
 	'hostname' 	=> 'localhost',
 	'username' 	=> 'root',
 	'password' 	=> '',
-	'database' 	=> 'otaac',
+	'database' 	=> 'otaac', // Do not use numbers in the name of your database
 );
 // Configurações de servidor
 $config['Server'] = array(
