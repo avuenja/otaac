@@ -93,8 +93,13 @@ class PlayersController extends AppController {
 			);
 			if($player['Player']['account_id'] == $this->Session->read('Account.id')) {
 				$this->Player->id = $id; // Atribuimos o id passado para o id do registro
+				if(tfs === '1.0') {
+					$situacao = 'deletion';
+				} else if(tfs === '0.3.6') {
+					$situacao = 'deleted';
+				}
 				$this->Player->updateAll( // Atualizamos o player com o deletion para 1
-					array('Player.deletion' => 1),
+					array('Player.'.$situacao => 1),
 					array('Player.id' => $id)
 				);
 				return $this->redirect(array('controller' => 'accounts', 'action' => 'manager')); // Retorna verdadeiro (redireciona)
@@ -110,11 +115,16 @@ class PlayersController extends AppController {
 	// Método top five player
 	function top5() {
 		$this->autoRender = false;
+		if(tfs === '1.0') {
+			$situacao = 'deletion';
+		} else if(tfs === '0.3.6') {
+			$situacao = 'deleted';
+		}
 		return $this->Player->find(
 			'list',
 			array(
 				'conditions' => array(
-					'Player.deletion' => 0
+					'Player.'.$situacao => 0
 				),
 				'fields' => array(
 					'Player.name',

@@ -30,7 +30,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label">World:</label>
 		<div class="col-sm-9">
-			<?php echo $this->Form->input('world', array('label' => false, 'options' => Configure::read('Worlds'), 'empty' => '--choose your world--', 'class' => 'form-control')); ?>
+			<?php echo $this->Form->input('world_id', array('label' => false, 'options' => Configure::read('Worlds'), 'empty' => '--choose your world--', 'class' => 'form-control')); ?>
 		</div>
 	</div>
 	<div class="form-group">
