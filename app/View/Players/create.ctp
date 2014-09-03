@@ -27,12 +27,14 @@
 			<?php echo $this->Form->input('town_id', array('label' => false, 'options' => $towns, 'empty' => '--choose your town--', 'class' => 'form-control')); ?>
 		</div>
 	</div>
+	<?php if(tfs === '0.3.6') { ?>
 	<div class="form-group">
 		<label class="col-sm-3 control-label">World:</label>
 		<div class="col-sm-9">
 			<?php echo $this->Form->input('world_id', array('label' => false, 'options' => Configure::read('Worlds'), 'empty' => '--choose your world--', 'class' => 'form-control')); ?>
 		</div>
 	</div>
+	<?php } ?>
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-9">
 			<button type="submit" class="btn btn-success">Create</button>

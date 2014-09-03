@@ -18,6 +18,11 @@ class CommunityController extends AppController {
 				$name = $this->data['Player']['name']; // $name recebe o valor do campo
 			}
 			$this->loadModel('Player'); // Carrega o Model para ser usado
+			if(tfs === '1.0') {
+				$world = 'Player.town_id';
+			} else if(tfs === '0.3.6') {
+				$world = 'Player.world_id';
+			}
 			$character = $this->Player->find( // Busca os characters relacionado a conta do usuario logado
 				'first', 
 				array(
@@ -36,7 +41,8 @@ class CommunityController extends AppController {
 						'Player.posx',
 						'Player.posy',
 						'Player.posz',
-						'Account.premdays'
+						'Account.premdays',
+						$world
 					)
 				)
 			);
@@ -47,6 +53,11 @@ class CommunityController extends AppController {
 					$vocation_player[$vocation_id] = $vocation; // Cria o array para exibir na view
 				}
 				$this->set('vocation', $vocation_player); // Envia para a view os dados
+				$world_player = array(); // Cria array vazio para se usar
+				foreach(Configure::read('Worlds') as $world_id => $world) { // Percorre o array de registros
+					$world_player[$world_id] = $world; // Cria o array para exibir na view
+				}
+				$this->set('world', $world_player); // Envia para a view os dados
 			} else { // Se não:
 				$this->Session->setFlash('Não foi possível encontrar este player!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
 			}

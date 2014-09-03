@@ -24,10 +24,12 @@
 					<td>Sex:</td>
 					<td><?php echo (($character['Player']['sex'] == 1) ? 'Male' : 'Female'); ?></td>
 				</tr>
-				<!-- <tr>
+				<?php if(tfs === '0.3.6') { ?>
+				<tr>
 					<td>World:</td>
-					<td><?php //echo ; ?></td>
-				</tr> -->
+					<td><?php echo $world[$character['Player']['world_id']]; ?></td>
+				</tr>
+				<?php } ?>
 				<tr>
 					<td>Last login:</td>
 					<td><?php echo ((!$character['Player']['lastlogin']) ? 'Nunca logou' : $character['Player']['lastlogin']); ?></td>

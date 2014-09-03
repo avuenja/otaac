@@ -85,7 +85,7 @@ class AccountsController extends AppController {
 			);
 			$this->set('characters', $characters); // Seta os dados para a view
 			$vocation_player = array(); // Cria array vazio para se usar
-			foreach(Configure::read('Vocations') as $vocation_id => $vocation) { // Percorre o array de registros
+			foreach(Configure::read('AllVocations') as $vocation_id => $vocation) { // Percorre o array de registros
 				$vocation_player[$vocation_id] = $vocation; // Cria o array para exibir na view
 			}
 			$this->set('vocation', $vocation_player); // Envia para a view os dados
