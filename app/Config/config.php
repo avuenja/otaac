@@ -12,6 +12,8 @@ define('database', $config['Database']['database']);
 define('nameServer', $config['Server']['name']);
 define('titleServer', $config['Server']['title']);
 define('tfs', $config['Server']['tfs']);
+define('dir_server', $config['Server']['dir']);
 // Constante da Engine (Aplicação)
 define('layoutAAC', $config['Engine']['layout']);
-define('url',  $config['Server']['url']);
+define('url',  $config['Engine']['url']);
+define('dir_pages',  $config['Engine']['dir_pages']);

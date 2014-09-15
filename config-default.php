@@ -11,12 +11,14 @@ $config['Database'] = array(
 $config['Server'] = array(
 	'name' 		=> 'OpenTibia',
 	'title' 	=> 'OT AAC - The best web application for Open Tibia Servers',
-	'url' 		=> 'http://localhost/otaac/',
-	'tfs' 		=> '1.0' // 1.0 or 0.3.6
+	'tfs' 		=> '1.0', // 1.0 or 0.3.6
+	'dir' 		=> 'C:\\'
 );
 // Configurações de Engine
 $config['Engine'] = array(
-	'layout' 	=> 'default'
+	'layout' 	=> 'default',
+	'url' 		=> 'http://localhost/otaac/',
+	'dir_pages' => 'C:\\xampp\htdocs\otaac\app\View\Pages'
 );
 // Configurações de vocações ativas para a escolha do player
 $config['Vocations'] = array(
