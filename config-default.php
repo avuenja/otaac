@@ -17,8 +17,7 @@ $config['Server'] = array(
 // Configurações de Engine
 $config['Engine'] = array(
 	'layout' 	=> 'default',
-	'url' 		=> 'http://localhost/otaac/',
-	'dir_pages' => 'C:\\xampp\htdocs\otaac\app\View\Pages'
+	'url' 		=> 'http://localhost/otaac/'
 );
 // Configurações de vocações ativas para a escolha do player
 $config['Vocations'] = array(

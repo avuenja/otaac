@@ -16,4 +16,3 @@ define('dir_server', $config['Server']['dir']);
 // Constante da Engine (Aplicação)
 define('layoutAAC', $config['Engine']['layout']);
 define('url',  $config['Engine']['url']);
-define('dir_pages',  $config['Engine']['dir_pages']);
