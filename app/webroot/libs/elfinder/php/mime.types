@@ -443,6 +443,7 @@ text/x-js js
 text/x-ksysv-log
 text/x-literate-haskell lhs
 text/x-log log
+text/x-lua lua
 text/x-makefile
 text/x-moc moc
 text/x-msil il
