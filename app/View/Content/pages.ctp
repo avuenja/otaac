@@ -12,8 +12,9 @@ echo $this->Html->script('/libs/elfinder/js/i18n/elfinder.pt_BR');
 <script type="text/javascript" charset="utf-8">
 	$().ready(function() {
 		var elf = $('#elfinder').elfinder({
-			url : '<?php echo url; ?>libs/elfinder/php/connector.php'  // connector URL (REQUIRED)
+			url: '<?php echo url; ?>libs/elfinder/php/connector.php', // connector URL (REQUIRED)
 			// lang: 'pt_BR',             // language (OPTIONAL)
+			rememberLastDir: true
 		}).elfinder('instance');
 	});
 </script>

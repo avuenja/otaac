@@ -29,14 +29,14 @@ $opts = array(
 	// 'debug' => true,
 	'roots' => array(
 		array(
-			'driver'        => 'LocalFileSystem',   // driver for accessing file system (REQUIRED)
-			'path'          => '../../../../View/Pages/', // path to files (REQUIRED)
-			'URL'           => dirname($_SERVER['PHP_SELF']) . '../../../../../View/Pages/', // URL to files (REQUIRED)
-			'accessControl' => 'access', // disable and hide dot starting files (OPTIONAL)
-			'alias' 		=> 'Pages',
-			'defaults' 		=> array('read' => true, 'write' => true),
-			'dirMode'       => 0755,
-			'fileMode'      => 0644
+			'driver'        	=> 'LocalFileSystem',   // driver for accessing file system (REQUIRED)
+			'path'          	=> '../../../../View/Pages/', // path to files (REQUIRED)
+			'URL'           	=> dirname($_SERVER['PHP_SELF']) . '../../../../../View/Pages/', // URL to files (REQUIRED)
+			'accessControl' 	=> 'access', // disable and hide dot starting files (OPTIONAL)
+			'alias' 			=> 'Pages',
+			'mimeDetect' 		=> 'internal',
+			'archiveMimes' 		=> array(),
+			'archivers' 		=> array()
 		)
 	)
 );
