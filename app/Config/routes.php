@@ -28,7 +28,7 @@
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
-	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+	Router::connect('/library/*', array('controller' => 'pages', 'action' => 'display'));
 	Router::connect('/character/*', array('controller' => 'players', 'action' => 'character')); // Router Player view
 
 /**
