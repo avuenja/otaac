@@ -32,8 +32,8 @@
 				<li <?php if($this->params['controller'] == 'settings') { ?> class="active" <?php } ?> class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li <?php if($this->params['controller'] == 'admin' && $this->params['action'] == 'server') { ?> class="active" <?php } ?>>
-							<a href="<?php echo url; ?>settings/server">Server</a>
+						<li <?php if($this->params['controller'] == 'settings' && $this->params['action'] == 'server') { ?> class="active" <?php } ?>>
+							<a href="<?php echo url; ?>settings/server">Manager server</a>
 						</li>
 						<li class="divider"></li>
 						<li <?php if($this->params['controller'] == 'admin' && $this->params['action'] == 'translation') { ?> class="active" <?php } ?>>
