@@ -1,3 +1,4 @@
+<?php $pages = $this->requestAction('/content/library'); // Array com as paginas do library ?>
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
@@ -41,22 +42,14 @@
 						</li>
 					</ul>
 				</li>
-				<li <?php if($this->params['controller'] == 'library') { ?> class="active" <?php } ?> class="dropdown">
+				<li <?php if($this->params['controller'] == 'pages') { ?> class="active" <?php } ?> class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Library <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li <?php if($this->params['controller'] == 'library' && $this->params['action'] == 'spells') { ?> class="active" <?php } ?>>
-							<a href="<?php echo url; ?>library/spells">Spells</a>
+						<?php foreach($pages['pages'] as $page) { // Percorre as paginas para montar o menu dinmicamente ?>
+						<li <?php if($this->params['controller'] == 'pages' && $this->params['pass'][0] == $page) { ?> class="active" <?php } ?>>
+							<a href="<?php echo url; ?>library/<?php echo $page; ?>"><?php echo ucfirst($page); ?></a>
 						</li>
-						<li <?php if($this->params['controller'] == 'library' && $this->params['action'] == 'monsters') { ?> class="active" <?php } ?>>
-							<a href="<?php echo url; ?>library/monsters">Monsters</a>
-						</li>
-						<li <?php if($this->params['controller'] == 'library' && $this->params['action'] == 'quests') { ?> class="active" <?php } ?>>
-							<a href="<?php echo url; ?>library/quests">Quests</a>
-						</li>
-						<li class="divider"></li>
-						<li <?php if($this->params['controller'] == 'library' && $this->params['action'] == 'exp_stages') { ?> class="active" <?php } ?>>
-							<a href="<?php echo url; ?>library/exp_stages">Exp. stages</a>
-						</li>
+						<?php } ?>
 					</ul>
 				</li>
 				<li><a href="#">Shop</a></li>
