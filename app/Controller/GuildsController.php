@@ -187,4 +187,21 @@ class GuildsController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
+
+	// Método top five guild
+	function top5() {
+		$this->autoRender = false;
+		return $this->Guild->find(
+			'list',
+			array(
+				'fields' => array(
+					'Guild.name'
+				),
+				'limit' => 5,
+				'order' => array(
+					'Guild.name' => 'ASC'
+				)
+			)
+		);
+	}
 }
