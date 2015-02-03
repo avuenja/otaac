@@ -26,20 +26,20 @@
 						<li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'highscores') { ?> class="active" <?php } ?>>
 							<a href="<?php echo url; ?>community/highscores">Highscores</a>
 						</li>
-						<li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'houses') { ?> class="active" <?php } ?>>
+						<!-- <li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'houses') { ?> class="active" <?php } ?>>
 							<a href="<?php echo url; ?>community/houses">Houses</a>
-						</li>
+						</li> -->
 						<li class="divider"></li>
 						<li <?php if($this->params['controller'] == 'guilds') { ?> class="active" <?php } ?>>
 							<a href="<?php echo url; ?>guilds">Guilds</a>
 						</li>
-						<li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'guild_war') { ?> class="active" <?php } ?>>
+						<!-- <li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'guild_war') { ?> class="active" <?php } ?>>
 							<a href="<?php echo url; ?>community/guild_war">Guild War</a>
 						</li>
 						<li class="divider"></li>
 						<li <?php if($this->params['controller'] == 'community' && $this->params['action'] == 'live_casts') { ?> class="active" <?php } ?>>
 							<a href="<?php echo url; ?>community/live_casts">Live Casts</a>
-						</li>
+						</li> -->
 					</ul>
 				</li>
 				<li <?php if($this->params['controller'] == 'pages') { ?> class="active" <?php } ?> class="dropdown">
@@ -52,7 +52,7 @@
 						<?php } ?>
 					</ul>
 				</li>
-				<li><a href="#">Shop</a></li>
+				<!-- <li><a href="#">Shop</a></li> -->
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<?php if($this->Session->check('Account')) { // Se sessão iniciada: ?>
