@@ -188,6 +188,15 @@ class GuildsController extends AppController {
 		}
 	}
 
+	// Método que aceita o invite do player
+	function accept_invite($pid, $gid) {
+		if($this->Session->check('Account')) { // Se existe uma sessão criada:
+			
+		} else { // Se não:
+			return $this->redirect('/'); // Redireciona pois não tem permissão
+		}
+	}
+
 	// Método top five guild
 	function top5() {
 		$this->autoRender = false;

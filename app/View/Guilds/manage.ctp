@@ -11,7 +11,7 @@
 					<tr>
 						<td><strong><a href="<?php echo url; ?>character/<?php echo $invites['Player']['name']; ?>"><?php echo $invites['Player']['name']; ?></a></strong></td>
 						<td>
-							<a href="<?php echo url; ?>guilds/accept_invite/<?php echo $invites['Player']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Aceitar">
+							<a href="<?php echo url; ?>guilds/accept_invite/<?php echo $invites['Player']['id']; ?>/<?php echo $invites['Guild']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Aceitar">
 								<span class="glyphicon glyphicon-ok"></span>
 							</a>
 							<a href="<?php echo url; ?>guilds/delete_invite/<?php echo $invites['Player']['id']; ?>/<?php echo $invites['Guild']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Excluir">
