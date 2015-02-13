@@ -11,7 +11,7 @@
 		<label class="col-sm-3 control-label">Sex:</label>
 		<div class="col-sm-9">
 			<?php
-			echo $this->Form->input('sex', array('label' => false, 'options' => array(1 => 'Male', 2 => 'Female'), 'empty' => '--choose your sex--', 'class' => 'form-control'));
+			echo $this->Form->input('sex', array('label' => false, 'options' => array(1 => 'Male', 0 => 'Female'), 'empty' => '--choose your sex--', 'class' => 'form-control'));
 			?>
 		</div>
 	</div>
