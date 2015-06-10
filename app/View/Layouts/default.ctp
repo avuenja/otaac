@@ -54,7 +54,7 @@
 					echo $this->fetch('content');
 					?>
 					<center><?php echo $this->element('sql_dump'); ?></center>
-					<p class="text-right">&copy; <?php echo nameServer; ?> - 2014</p>
+					<p class="text-right">&copy; <?php echo nameServer . " - " . date("Y"); ?></p>
 				</div>
 			</div>
 		</div>
