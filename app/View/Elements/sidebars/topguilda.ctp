@@ -10,7 +10,7 @@ $position = 1;
 			</a>
 		</h4>
 	</div>
-	<div id="collapseGuilda" class="panel-collapse collapse" style="height: 0px;">
+	<div id="collapseGuilda" class="panel-collapse collapse in" style="height: auto;">
 		<table class="table table-condensed table-content table-striped">
 			<tbody>
 				<?php foreach($guilds as $key => $name) { ?>
