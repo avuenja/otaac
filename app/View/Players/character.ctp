@@ -1,7 +1,7 @@
 <?php $this->set('title_for_layout', 'Character ['.$character['Player']['name'].']'); // Titulo da pagina ?>
 <div class="panel panel-default panel-body">
 	<div class="table-responsive">
-		<table class="table">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th colspan="2">Information player</th>
