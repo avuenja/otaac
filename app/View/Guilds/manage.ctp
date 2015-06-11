@@ -1,15 +1,18 @@
 <?php $this->set('title_for_layout', 'Manage guild ['.$guild['Guild']['name'].']'); // Titulo da pagina ?>
 <div class="panel panel-default panel-body">
-	<div class="col-md-4">
+	<div class="col-md-6">
 		<div class="panel panel-default panel-body">
 			<table class="table">
 				<thead>
-					<tr><th colspan="2">Invitations players</th></tr>
+					<tr><th colspan="3">Invitations players</th></tr>
 				</thead>
 				<tbody>
 					<?php foreach($guildInvites as $invites) { ?>
 					<tr>
 						<td><strong><a href="<?php echo url; ?>character/<?php echo $invites['Player']['name']; ?>"><?php echo $invites['Player']['name']; ?></a></strong></td>
+						<td>
+						    <?php echo $this->Form->input('rank_id', array('label' => false, 'options' => $guildRanks, 'empty' => 'choose a rank', 'class' => 'form-control')); ?>
+						</td>
 						<td>
 							<a href="<?php echo url; ?>guilds/accept_invite/<?php echo $invites['Player']['id']; ?>/<?php echo $invites['Guild']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Aceitar">
 								<span class="glyphicon glyphicon-ok"></span>
@@ -24,7 +27,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="col-md-8">
+	<div class="col-md-6">
 		<div class="panel panel-default panel-body">
 			<table class="table">
 				<thead>
@@ -42,3 +45,12 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$("#rank_id").change(function() {
+    var rank = $(this).val();
+    if(rank.length != 0) {
+        alert(rank);
+    }
+});
+</script>

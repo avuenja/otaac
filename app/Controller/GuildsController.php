@@ -154,7 +154,7 @@ class GuildsController extends AppController {
 					)
 				);
 				$this->set('guildInvites', $guildInvites); // Seta os convites para a view
-				$guilInfo = $this->Guild->find(
+				$guilInfo = $this->Guild->find( // Busca as informações da Guilda
 					'first',
 					array(
 						'conditions' => array(
@@ -167,7 +167,20 @@ class GuildsController extends AppController {
 						)
 					)
 				);
-				$this->set('guildInfo', $guilInfo);
+				$this->set('guildInfo', $guilInfo); // Seta as informações para a view
+                $guildRanks = $this->GuildRank->find( // Busca os ranks da Guilda
+                    'list',
+                    array(
+                        'condiitons' => array(
+                            'Guild.id' => $id
+                        ),
+                        'fields' => array(
+                            'GuildRank.id',
+                            'GuildRank.name'
+                        )
+                    )
+                );
+                $this->set('guildRanks', $guildRanks); // Seta os ranks para a view
 			} else { // Se não:
 				$this->Session->setFlash('Você não é o dono desta guild!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
 				return $this->redirect(array('action' => 'index')); // Retorna erro (redireciona)
@@ -189,9 +202,14 @@ class GuildsController extends AppController {
 	}
 
 	// Método que aceita o invite do player
-	function accept_invite($pid, $gid) {
+	function accept_invite($pid, $gid, $rid) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
-			
+            $member['GuildMember'] = array( // Array com os dados para salvar o novo membro
+                'player_id' => $pid,
+                'guild_id'  => $gid,
+                'rank_id'   => $rid
+            );
+			$this->GuildMember->save($member);
 		} else { // Se não:
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
