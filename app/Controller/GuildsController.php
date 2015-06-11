@@ -232,6 +232,18 @@ class GuildsController extends AppController {
 		}
 	}
 
+	// Método de deletar o player
+	function delete_player($pid, $gid) {
+		if($this->Session->check('Account')) { // Se existe uma sessão criada:
+			if($this->GuildMember->deleteAll(array('GuildMember.player_id' => $pid, 'GuildMember.guild_id' => $gid), false))
+			{
+				return $this->redirect(array('action' => 'manage', $gid)); // Retorna erro (redireciona)
+			}
+		} else { // Se não:
+			return $this->redirect('/'); // Redireciona pois não tem permissão
+		}
+	}
+
 	// Método que aceita o invite do player
 	function accept_invite($pid, $gid, $rid) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:

@@ -48,21 +48,27 @@
     		<div class="panel panel-default panel-body">
     			<table class="table">
     				<thead>
-    					<tr><th colspan="4">Guild members</th></tr>
+    					<tr><th colspan="5">Guild members</th></tr>
     					<tr>
     					    <th>Name</th>
     					    <th>Level</th>
     					    <th>Vocation</th>
     					    <th>Rank</th>
+							<th>#</th>
     					</tr>
     				</thead>
     				<tbody>
     				<?php foreach($guildMembers as $guildMember) { ?>
     					<tr>
-    						<td><?php echo $guildMember['Player']['name']; ?></td>
+    						<td><a href="<?php echo url; ?>character/<?php echo $guildMember['Player']['name']; ?>"><?php echo $guildMember['Player']['name']; ?></a></td>
     						<td><?php echo $guildMember['Player']['level']; ?></td>
     						<td><?php echo $vocation[$guildMember['Player']['vocation']]; ?></td>
     						<td><?php echo $guildMember['GuildRank']['name']; ?></td>
+							<td>
+								<a href="<?php echo url; ?>guilds/delete_player/<?php echo $guildMember['Player']['id']; ?>/<?php echo $guildMember['Guild']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Deletar">
+									<span class="glyphicon glyphicon-remove"></span>
+								</a>
+							</td>
     					</tr>
     				<?php } ?>
     				</tbody>
@@ -73,11 +79,9 @@
 
 <script>
 	var rank = 0;
-
 	function Accept(pid, gid) {
 		window.location.href = "<?php echo url; ?>guilds/accept_invite/" + pid + "/" + gid + "/" + rank;
 	}
-
 	$("#rank_id").change(function() {
 		rank = $(this).val();
 	});
