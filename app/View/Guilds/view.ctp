@@ -11,7 +11,7 @@
 						<td><strong>Name guild:</strong></td>
 						<td><?php echo $guildInfo['Guild']['name']; ?></td>
 						<td><strong>Owner guild:</strong></td>
-						<td><?php echo $guildInfo['Player']['name']; ?></td>
+						<td><a href="<?php echo url; ?>character/<?php echo $guildInfo['Player']['name']; ?>"><?php echo $guildInfo['Player']['name']; ?></a></td>
 					</tr>
 					<tr>
 					    <td><strong>Motd guild:</strong></td>
@@ -36,7 +36,7 @@
                 <tbody>
                 <?php foreach($guildMembers as $guildMember) { ?>
                     <tr>
-                        <td><?php echo $guildMember['Player']['name']; ?></td>
+                        <td><a href="<?php echo url; ?>character/<?php echo $guildMember['Player']['name']; ?>"><?php echo $guildMember['Player']['name']; ?></a></td>
                         <td><?php echo $guildMember['Player']['level']; ?></td>
                         <td><?php echo $vocation[$guildMember['Player']['vocation']]; ?></td>
                         <td><?php echo $guildMember['GuildRank']['name']; ?></td>
