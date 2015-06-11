@@ -1,7 +1,7 @@
 <?php $this->set('title_for_layout', 'Admin Panel ['.$this->Session->read('Account.name').']'); // Titulo da pagina ?>
 <div class="panel panel-default panel-body">
 	<div class="col-md-4">
-		<div class="panel panel-default panel-body">
+		<div class="panel panel-default panel-body" style="min-height: 170px;">
 			<fieldset>
 				<legend>Information players</legend>
 				<p>Players recorded : <?php echo $recorded; ?></p>
@@ -11,7 +11,7 @@
 	</div>
 	
 	<div class="col-md-4">
-		<div class="panel panel-default panel-body">
+		<div class="panel panel-default panel-body" style="min-height: 170px;">
 			<fieldset>
 				<legend>Information accounts</legend>
 				<p>Accounts recorded : <?php echo $recordedAccounts; ?></p>
@@ -22,10 +22,11 @@
 	</div>
 	
 	<div class="col-md-4">
-		<div class="panel panel-default panel-body">
+		<div class="panel panel-default panel-body" style="min-height: 170px;">
 			<fieldset>
 				<legend>Information posts</legend>
 				<p>Posts created: <?php echo $posts; ?></p>
+				<p>Posts deleted: <?php echo $postsDeleted; ?></p>
 			</fieldset>
 		</div>
 	</div>

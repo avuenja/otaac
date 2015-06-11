@@ -220,6 +220,26 @@ class GuildsController extends AppController {
 		}
 	}
 
+    // Método de delete de guild
+    function delete_guild($id) {
+        if($this->Session->check('Account')) { // Se existe uma sessão criada:
+            $guildOwner = $this->Guild->find('first', array('conditions' => array('Guild.ownerid' => $this->Session->read('Account.id'), 'Guild.id' => $id), 'fields' => array('Guild.name'))); // Busca se ele é o dono ou não da guild
+            if(!empty($guildOwner)) { // Se ele é o dono da guild
+                if($this->Guild->deleteAll(array('Guild.id' => $id), false)) { // Se deletar a guilda:
+                    $this->GuildInvite->deleteAll(array('GuildInvite.guild_id' => $id), false); // Deleta os invites da guilda
+                    $this->GuildMember->deleteAll(array('GuildMember.guild_id' => $id), false); // Deleta os membros da guilda
+                    $this->GuildRank->deleteAll(array('GuildRank.guild_id' => $id), false); // Deleta os ranks da guilda
+                    return $this->redirect(array('action' => 'index')); // Retorna (redireciona)
+                }
+            } else { // Se não:
+                $this->Session->setFlash('Você não é o dono desta guild!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+                return $this->redirect(array('action' => 'index')); // Retorna erro (redireciona)
+            }
+        } else { // Se não:
+            return $this->redirect('/'); // Redireciona pois não tem permissão
+        }
+    }
+
 	// Método de delete de invite
 	function delete_invite($pid, $gid) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:

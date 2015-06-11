@@ -28,13 +28,15 @@ class AdminController extends AppController {
 			$premium = $this->Account->find('count', array('conditions' => array('Account.premdays >' => 0))); // Accounts premium
 			$free = $this->Account->find('count', array('conditions' => array('Account.premdays' => 0))); // Accounts free
 			$posts = $this->Post->find('count'); // Posts criados
-			
+			$postsDeleted = $this->Post->find('count', array('conditions' => array('Post.situation' => 'I'))); // Posts deletados
+
 			$this->set('recorded', $recorded);
 			$this->set('deleted', $deleted);
 			$this->set('recordedAccounts', $recordedAccounts);
 			$this->set('premium', $premium);
 			$this->set('free', $free);
 			$this->set('posts', $posts);
+			$this->set('postsDeleted', $postsDeleted);
 		}
 	}
 }

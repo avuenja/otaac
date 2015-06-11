@@ -31,7 +31,12 @@
 		<div class="panel panel-default panel-body">
 			<table class="table">
 				<thead>
-					<tr><th colspan="4">Guild informations</th></tr>
+					<tr>
+					    <th colspan="3">Guild informations</th>
+                        <th class="text-right">
+                            <a id="guildDelete" type="button" class="btn btn-danger btn-xs">Delete your Guild</a>
+                        </th>
+					</tr>
 				</thead>
 				<tbody>
 					<tr>
@@ -84,5 +89,12 @@
 	}
 	$("#rank_id").change(function() {
 		rank = $(this).val();
+	});
+
+	$("#guildDelete").click(function() {
+	   var r = confirm("Deseja mesmo deletar sua guild?");
+	   if(r == true) {
+	        window.location.href = "<?php echo url; ?>guilds/delete_guild/<?php echo $guildInfo['Guild']['id']; ?>";
+	   }
 	});
 </script>
