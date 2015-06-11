@@ -292,10 +292,8 @@ class GuildsController extends AppController {
                         'conditions' => array(
                             'Guild.id' => $id
                         ),
-                        'fields' => array(
-                            'Guild.id',
-                            'Guild.name',
-                            'Guild.motd'
+                        'contain' => array(
+                            'Player'
                         )
                     )
                 );

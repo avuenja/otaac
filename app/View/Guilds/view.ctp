@@ -1,4 +1,4 @@
-<?php $this->set('title_for_layout', 'Manage guild ['.$guild['Guild']['name'].']'); // Titulo da pagina ?>
+<?php $this->set('title_for_layout', 'Guild ['.$guild['Guild']['name'].']'); // Titulo da pagina ?>
 <div class="panel panel-default panel-body">
 	<div class="col-md-12">
 		<div class="panel panel-default panel-body">
@@ -10,8 +10,12 @@
 					<tr>
 						<td><strong>Name guild:</strong></td>
 						<td><?php echo $guildInfo['Guild']['name']; ?></td>
-						<td><strong>Motd guild:</strong></td>
-						<td><?php echo $guildInfo['Guild']['motd']; ?></td>
+						<td><strong>Owner guild:</strong></td>
+						<td><?php echo $guildInfo['Player']['name']; ?></td>
+					</tr>
+					<tr>
+					    <td><strong>Motd guild:</strong></td>
+                        <td colspan="3"><?php echo $guildInfo['Guild']['motd']; ?></td>
 					</tr>
 				</tbody>
 			</table>
