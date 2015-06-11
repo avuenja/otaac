@@ -4,7 +4,18 @@
 		<div class="panel panel-default panel-body">
 			<table class="table">
 				<thead>
-					<tr><th colspan="4">Guild informations</th></tr>
+					<tr>
+					    <th colspan="3">Guild informations</th>
+					    <th class="text-right">
+					    <?php if($this->Session->check('Account')) { ?>
+					        <?php if($this->Session->read('Account.name') == $guildInfo['Player']['name']){ // Se quem estiver logado for o dono da guilda ?>
+                                <a href="<?php echo url; ?>guilds/manage/<?php echo $guildInfo['Guild']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Gerenciar"><span class="glyphicon glyphicon-wrench"></span></a>
+                            <?php } if($this->Session->read('Account.name') != $guildInfo['Player']['name']) { // Se quem estiver logado não for o dono da guilda ?>
+                                <a href="<?php echo url; ?>guilds/invite/<?php echo $guildInfo['Guild']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Invite"><span class="glyphicon glyphicon-share-alt"></span></a>
+                            <?php } ?>
+                        <?php } ?>
+                        </th>
+					</tr>
 				</thead>
 				<tbody>
 					<tr>
