@@ -23,7 +23,19 @@ class GuildMember extends AppModel {
 				'rule' => 'notEmpty',
 				'message' => 'O player não pode ficar em branco!'
 			)
-		)
+		),
+        'guild_id' => array(
+            'required' => array(
+                'rule' => 'notEmpty',
+                'message' => 'A guilda não pode ficar em branco!'
+            )
+        ),
+        'rank_id' => array(
+            'required' => array(
+                'rule' => 'notEmpty',
+                'message' => 'O rank não pode ficar em branco!'
+            )
+        )
 	);
 	
 	// Método beforeSave (Antes de salvar)

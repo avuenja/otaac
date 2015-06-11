@@ -31,7 +31,7 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $components = array('Session', 'OTAAC'); // Componentes usados por todos os controllers
+	public $components = array('Session', 'OTAAC', 'RequestHandler'); // Componentes usados por todos os controllers
 	
 	// Método de funções carregadas antes de qualquer coisa
 	function beforeFilter() {

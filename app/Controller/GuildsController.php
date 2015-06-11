@@ -180,6 +180,37 @@ class GuildsController extends AppController {
                     )
                 );
                 $this->set('guildRanks', $guildRanks); // Seta os ranks para a view
+                $guildMembers = $this->GuildMember->find( // Busca os membros da guilda
+                    'all',
+                    array(
+                        'conditions' => array(
+                            'GuildMember.guild_id' => $id
+                        ),
+                        'contain' => array(
+                            'Player' => array(
+                                'fields' => array(
+                                    'Player.id',
+                                    'Player.name',
+                                    'Player.level',
+                                    'Player.vocation'
+                                )
+                            ),
+                            'GuildRank' => array(
+                                'fields' => array(
+                                    'GuildRank.id',
+                                    'GuildRank.name',
+                                    'GuildRank.level'
+                                )
+                            )
+                        )
+                    )
+                );
+                $this->set('guildMembers', $guildMembers); // Seta os membros para a view
+                $vocation_player = array(); // Cria array vazio para se usar
+                foreach(Configure::read('AllVocations') as $vocation_id => $vocation) { // Percorre o array de registros
+                    $vocation_player[$vocation_id] = $vocation; // Cria o array para exibir na view
+                }
+                $this->set('vocation', $vocation_player); // Envia para a view os dados
 			} else { // Se não:
 				$this->Session->setFlash('Você não é o dono desta guild!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
 				return $this->redirect(array('action' => 'index')); // Retorna erro (redireciona)
