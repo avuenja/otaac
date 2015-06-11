@@ -30,6 +30,7 @@
  */
 	Router::connect('/library/*', array('controller' => 'pages', 'action' => 'display'));
 	Router::connect('/character/*', array('controller' => 'players', 'action' => 'character')); // Router Player view
+	Router::connect('/guild/*', array('controller' => 'guilds', 'action' => 'view')); // Router Guild view
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

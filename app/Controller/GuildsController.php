@@ -267,4 +267,90 @@ class GuildsController extends AppController {
 			)
 		);
 	}
+
+    // Método de visualização de guild
+    function view($guild = null) {
+        if(!empty($guild)) { // Se foi passado o id ou o nome da guild
+            $guildSearch = $this->Guild->find( // Busca a guild
+                'first',
+                array(
+                    'conditions' => array(
+                        'OR' => array(
+                            'Guild.id' => $guild,
+                            'Guild.name' => $guild
+                        )
+                    ),
+                    'fields' => array('id', 'name')
+                )
+            );
+            if(!empty($guildSearch)) { // Se encontrou a guild
+                $id = $guildSearch['Guild']['id']; // Seta o id dela para as demais buscas
+                $this->set('guild', $guildSearch); // Passa o nome da guild para a view
+                $guilInfo = $this->Guild->find( // Busca as informações da Guilda
+                    'first',
+                    array(
+                        'conditions' => array(
+                            'Guild.id' => $id
+                        ),
+                        'fields' => array(
+                            'Guild.id',
+                            'Guild.name',
+                            'Guild.motd'
+                        )
+                    )
+                );
+                $this->set('guildInfo', $guilInfo); // Seta as informações para a view
+                $guildRanks = $this->GuildRank->find( // Busca os ranks da Guilda
+                    'list',
+                    array(
+                        'conditions' => array(
+                            'GuildRank.guild_id' => $id
+                        ),
+                        'fields' => array(
+                            'GuildRank.id',
+                            'GuildRank.name'
+                        )
+                    )
+                );
+                $this->set('guildRanks', $guildRanks); // Seta os ranks para a view
+                $guildMembers = $this->GuildMember->find( // Busca os membros da guilda
+                    'all',
+                    array(
+                        'conditions' => array(
+                            'GuildMember.guild_id' => $id
+                        ),
+                        'contain' => array(
+                            'Player' => array(
+                                'fields' => array(
+                                    'Player.id',
+                                    'Player.name',
+                                    'Player.level',
+                                    'Player.vocation'
+                                )
+                            ),
+                            'GuildRank' => array(
+                                'fields' => array(
+                                    'GuildRank.id',
+                                    'GuildRank.name',
+                                    'GuildRank.level'
+                                )
+                            )
+                        )
+                    )
+                );
+                $this->set('guildMembers', $guildMembers); // Seta os membros para a view
+                $vocation_player = array(); // Cria array vazio para se usar
+                foreach (Configure::read('AllVocations') as $vocation_id => $vocation) { // Percorre o array de registros
+                    $vocation_player[$vocation_id] = $vocation; // Cria o array para exibir na view
+                }
+                $this->set('vocation', $vocation_player); // Envia para a view os dados
+            } else {
+                $this->Session->setFlash('Esta guild não existe!! As guilds existentes no servidor são as listadas abaixo.', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+                return $this->redirect(array('action' => 'index')); // Retorna erro (redireciona)
+            }
+        } else { // Se não:
+            $this->Session->setFlash('Esta guild não existe!! As guilds existentes no servidor são as listadas abaixo.', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+            return $this->redirect(array('action' => 'index')); // Retorna erro (redireciona)
+        }
+    }
 }
