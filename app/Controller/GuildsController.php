@@ -66,6 +66,7 @@ class GuildsController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
+
 	// Método de invite a guild
 	function invite($id) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
@@ -127,6 +128,7 @@ class GuildsController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
+
 	// Método de manage de guild
 	function manage($id) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
@@ -186,6 +188,7 @@ class GuildsController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
+
 	// Método de delete de invite
 	function delete_invite($pid, $gid) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
@@ -197,6 +200,7 @@ class GuildsController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
+
 	// Método que aceita o invite do player
 	function accept_invite($pid, $gid, $rid) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
@@ -215,6 +219,7 @@ class GuildsController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
+
 	// Método top five guild
 	function top5() {
 		$this->autoRender = false;
