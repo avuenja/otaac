@@ -3,7 +3,6 @@ class GuildsController extends AppController {
 	public $name = 'Guilds'; // Nome do controller
 	public $uses = array('Guild', 'GuildMember', 'GuildRank', 'GuildInvite'); // Model usado pelo controller
 	public $helpers = array('Html', 'Form', 'Js'); // Helpers usados pela view
-
 	// Método de funções carregadas antes de qualquer coisa
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -67,7 +66,6 @@ class GuildsController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
-
 	// Método de invite a guild
 	function invite($id) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
@@ -129,7 +127,6 @@ class GuildsController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
-
 	// Método de manage de guild
 	function manage($id) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
@@ -171,8 +168,8 @@ class GuildsController extends AppController {
                 $guildRanks = $this->GuildRank->find( // Busca os ranks da Guilda
                     'list',
                     array(
-                        'condiitons' => array(
-                            'Guild.id' => $id
+                        'conditions' => array(
+                            'GuildRank.guild_id' => $id
                         ),
                         'fields' => array(
                             'GuildRank.id',
@@ -189,18 +186,17 @@ class GuildsController extends AppController {
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
-
 	// Método de delete de invite
 	function delete_invite($pid, $gid) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
-			if($this->GuildInvite->deleteAll(array('GuildInvite.player_id' => $pid, 'GuildInvite.guild_id' => $gid), false)) {
+			if($this->GuildInvite->deleteAll(array('GuildInvite.player_id' => $pid, 'GuildInvite.guild_id' => $gid), false))
+			{
 				return $this->redirect(array('action' => 'manage', $gid)); // Retorna erro (redireciona)
 			}
 		} else { // Se não:
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
-
 	// Método que aceita o invite do player
 	function accept_invite($pid, $gid, $rid) {
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
@@ -209,12 +205,16 @@ class GuildsController extends AppController {
                 'guild_id'  => $gid,
                 'rank_id'   => $rid
             );
-			$this->GuildMember->save($member);
+			
+			if($this->GuildMember->save($member)) { // Se salva o player na guild
+				$this->delete_invite($pid, $gid); // Deleta o player da lista de invites
+			} else { // Se não:
+				return $this->Session->setFlash('Não foi possível invitar este player', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+			}
 		} else { // Se não:
 			return $this->redirect('/'); // Redireciona pois não tem permissão
 		}
 	}
-
 	// Método top five guild
 	function top5() {
 		$this->autoRender = false;

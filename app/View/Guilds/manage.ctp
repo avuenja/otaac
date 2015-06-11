@@ -14,9 +14,9 @@
 						    <?php echo $this->Form->input('rank_id', array('label' => false, 'options' => $guildRanks, 'empty' => 'choose a rank', 'class' => 'form-control')); ?>
 						</td>
 						<td>
-							<a href="<?php echo url; ?>guilds/accept_invite/<?php echo $invites['Player']['id']; ?>/<?php echo $invites['Guild']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Aceitar">
+							<button class="btn btn-default btn-xs" title="Aceitar" onclick="Accept(<?php echo $invites['Player']['id'] . ", " . $invites['Guild']['id']; ?>)">
 								<span class="glyphicon glyphicon-ok"></span>
-							</a>
+							</button>
 							<a href="<?php echo url; ?>guilds/delete_invite/<?php echo $invites['Player']['id']; ?>/<?php echo $invites['Guild']['id']; ?>" type="button" class="btn btn-default btn-xs" title="Excluir">
 								<span class="glyphicon glyphicon-remove"></span>
 							</a>
@@ -47,10 +47,13 @@
 </div>
 
 <script>
-$("#rank_id").change(function() {
-    var rank = $(this).val();
-    if(rank.length != 0) {
-        alert(rank);
-    }
-});
+	var rank = 0;
+
+	function Accept(pid, gid) {
+		window.location.href = "<?php echo url; ?>guilds/accept_invite/" + pid + "/" + gid + "/" + rank;
+	}
+
+	$("#rank_id").change(function() {
+		rank = $(this).val();
+	});
 </script>

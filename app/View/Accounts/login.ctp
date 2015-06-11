@@ -4,13 +4,13 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Account name:</label>
 		<div class="col-sm-9">
-			<?php echo $this->Form->input('name', array('label' => false, 'class' => 'form-control', 'placeholder' => '3 to 20 characters')); ?>
+			<?php echo $this->Form->input('name', array('label' => false, 'class' => 'form-control', 'placeholder' => 'Account name')); ?>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Password:</label>
 		<div class="col-sm-9">
-			<?php echo $this->Form->input('password', array('label' => false, 'class' => 'form-control', 'placeholder' => '6 to 25 characters')); ?>
+			<?php echo $this->Form->input('password', array('label' => false, 'class' => 'form-control', 'placeholder' => 'Password')); ?>
 		</div>
 	</div>
 	<div class="form-group">
