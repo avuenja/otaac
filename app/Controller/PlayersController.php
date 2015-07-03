@@ -25,6 +25,11 @@ class PlayersController extends AppController {
 				$this->request->data['Player']['posx'] = $pos[$this->request->data['Player']['town_id']]['x']; // Atribui a posição da cidade ao player
 				$this->request->data['Player']['posy'] = $pos[$this->request->data['Player']['town_id']]['y']; // Atribui a posição da cidade ao player
 				$this->request->data['Player']['posz'] = $pos[$this->request->data['Player']['town_id']]['z']; // Atribui a posição da cidade ao player
+
+				if(!array_key_exists($this->request->data['Player']['vocation'], Configure::read('Vocations'))) {
+					return $this->Session->setFlash('Nenhuma Vocação foi encontrada.', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+				}
+
 				if($this->Player->save($this->request->data)) { // Se salvar o registro:
 					return $this->redirect('/'); // Retorna verdadeiro (redireciona)
 				} else { // Se não:
@@ -90,6 +95,11 @@ class PlayersController extends AppController {
 
 	// Método de desativação de player
 	function delete($id) {
+		if (is_null($id)) {
+			$this->Session->setFlash('Usuário não encontrado.', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+			return $this->redirect(array('controller' => 'accounts', 'action' => 'manager')); // Redireciona pois não tem permissão
+		}
+
 		if($this->Session->check('Account')) { // Se existe uma sessão criada:
 			$player = $this->Player->find(
 				'first', 
@@ -115,7 +125,7 @@ class PlayersController extends AppController {
 				);
 				return $this->redirect(array('controller' => 'accounts', 'action' => 'manager')); // Retorna verdadeiro (redireciona)
 			} else {
-				$this->Session->setFlash('Você não tem permissão para isto!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+				$this->Session->setFlash('Usuário não encontrado.', 'default', array('class'=>'alert alert-danger')); // Retorna erro
 				return $this->redirect(array('controller' => 'accounts', 'action' => 'manager')); // Redireciona pois não tem permissão
 			}
 		} else { // Se não:
