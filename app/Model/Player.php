@@ -32,7 +32,11 @@ class Player extends AppModel {
 			'required' => array(
 				'rule' => 'notEmpty',
 				'message' => 'O sexo não pode ficar em branco!'
-			)
+			),
+			'valid' => array(
+                'rule' => array('inList', array(0, 1)),
+                'message' => 'O sexo não é válido'
+            )
 		),
 		'vocation' => array(
 			'required' => array(
