@@ -1,14 +1,11 @@
 <?php $this->set('title_for_layout', 'Highscores'); // Titulo da pagina ?>
-<div class="panel panel-default panel-body">
-	<?php echo $this->Form->create('highscores',array('class' => 'form-inline')); ?>
-		<div class="form-group">
-			<?php 
-			$options = array('Experience', 'Magic Level', 'Fist', 'Club', 'Sword', 'Axe', 'Distance', 'Shield', 'Fishing');
-			echo $this->Form->input('sort', array('label' => false, 'class' => 'form-control', 'options' => $options,'empty' => '--Sort by--'));
-			?>
-		</div>
-		<button type="submit" class="btn btn-default">Order</button>
-	<?php echo $this->Form->end();?>
+<div class="panel panel-default panel-body form-inline ">
+	<div class="form-group">
+		<?php
+		echo $this->Form->input('sort', array('label' => false, 'class' => 'form-control', 'options' => $options, 'default' => 'Experience'));
+		?>
+	</div>
+	<button class="btn btn-default" id="order">Order</button>
 </div>
 <?php if(isset($characters) && !empty($characters)) { ?>
 <div class="panel panel-default panel-body">
@@ -55,3 +52,10 @@
 	</div>
 </div>
 <?php } ?>
+<script>
+	$("#order").click(function() {
+		var sort = $("#sort").val();
+		location.href = "<?php echo url ?>/community/highscores/" + sort;
+		$("#sort").val(sort);
+	});
+</script>
