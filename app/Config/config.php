@@ -15,4 +15,5 @@ define('tfs', $config['Server']['tfs']);
 define('dir_server', $config['Server']['dir']);
 // Constante da Engine (Aplicação)
 define('layoutAAC', $config['Engine']['layout']);
+define('themeAAC', $config['Engine']['theme']);
 define('url',  $config['Engine']['url']);

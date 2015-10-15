@@ -17,6 +17,7 @@ $config['Server'] = array(
 // Configurações de Engine
 $config['Engine'] = array(
 	'layout' 	=> 'default',
+	'theme' 	=> 'otaac',
 	'url' 		=> 'http://localhost/otaac/'
 );
 // Configurações de vocações ativas para a escolha do player

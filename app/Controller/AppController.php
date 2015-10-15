@@ -36,5 +36,6 @@ class AppController extends Controller {
 	// Método de funções carregadas antes de qualquer coisa
 	function beforeFilter() {
 		$this->layout = layoutAAC; // Definição de layout padrão do AAC
+		$this->theme = themeAAC; // Definição de theme padrão do AAC
 	}
 }
