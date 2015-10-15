@@ -22,6 +22,11 @@ class PlayersController extends AppController {
 			if($this->request->is('post')) { // Se a requisição for do tipo POST:
 				$this->Player->create(); // Cria o registro no model
 				$this->request->data['Player']['account_id'] = $this->Session->read('Account.id'); // Atribui o id da conta ao player
+
+				if(!array_key_exists($this->request->data['Player']['town_id'], Configure::read('Cities'))) {
+					return $this->Session->setFlash('Nenhuma Cidade foi encontrada.', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+				}
+
 				$this->request->data['Player']['posx'] = $pos[$this->request->data['Player']['town_id']]['x']; // Atribui a posição da cidade ao player
 				$this->request->data['Player']['posy'] = $pos[$this->request->data['Player']['town_id']]['y']; // Atribui a posição da cidade ao player
 				$this->request->data['Player']['posz'] = $pos[$this->request->data['Player']['town_id']]['z']; // Atribui a posição da cidade ao player
