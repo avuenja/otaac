@@ -40,12 +40,9 @@ class Guild extends AppModel {
 	
 	// Método beforeSave (Antes de salvar)
 	public function beforeSave($options = array()) {
-		App::import('Model', 'Player');
-		$Player = new Player();
-
 		$uid = $_SESSION['Account']['id'];
 
-		$players = $Player->find('list', array(
+		$players = $this->Player->find('list', array(
 			'conditions' => array(
 				'Player.account_id' => $uid
 			)
