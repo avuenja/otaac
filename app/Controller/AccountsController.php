@@ -14,6 +14,7 @@ class AccountsController extends AppController {
 		if($this->request->is('post')) { // Se a requisição for do tipo POST:
 			$this->Account->create(); // Cria a conta no model
 			if($this->Account->save($this->request->data)) { // Se salvar a conta:
+			    $this->Session->setFlash('Conta criada com sucesso! <b>Sua recovery key é: '.$this->recovery.'</b>', 'default', array('class'=>'alert alert-success'));
 				return $this->redirect(array('action' => 'login')); // Retorna verdadeiro (redireciona)
 			} else { // Se não:
 				return $this->Session->setFlash('Não foi possível criar sua conta', 'default', array('class'=>'alert alert-danger')); // Retorna erro

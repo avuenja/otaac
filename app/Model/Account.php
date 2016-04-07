@@ -49,7 +49,7 @@ class Account extends AppModel {
 			)
 		)
 	);
-	
+    
 	// Método beforeSave (Antes de salvar)
 	public function beforeSave($options = array()) {
 		if(tfs === '1.0') {
@@ -74,4 +74,13 @@ class Account extends AppModel {
 			}
 		}
 	}
+
+    public function afterSave($created, $options = array())
+    {
+        App::import('Model', 'RecoveryKey');
+        $RecoveryKey = new RecoveryKey();
+        
+        $recovery = $RecoveryKey->save($this->data);
+        $this->recovery = $recovery['RecoveryKey']['recovery_key'];
+    }
 }
