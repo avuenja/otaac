@@ -110,6 +110,31 @@ class AccountsController extends AppController {
 			}
 		}
 	}
+    
+    // Método de change account
+    function recover() {
+        if(!$this->Session->check('Account')) { // Se não existe uma sessão criada:
+            if ($this->request->data['Account']['password'] === $this->request->data['Account']['password_repeat']) {
+                $this->request->data['Account']['password'] = hash('sha1', $this->request->data['Account']['password']);
+                $recovery = $this->request->data['Account']['recovery_key'];
+                unset($this->request->data['Account']['password_repeat']);
+                
+                $this->loadModel('RecoveryKey');
+                $recovery_exists = $this->RecoveryKey->find('first', array(
+                    'conditions' => array(
+                        'recovery_key' => $recovery
+                    ),
+                    'recursive' => -1
+                ));
+                pr($recovery_exists);
+            } else {
+                return $this->Session->setFlash('As senhas não conferem!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+            }
+            exit();
+        } else { // Se não:
+            return $this->redirect('/'); // Redireciona pois já esta logado
+        }
+    }
 
 	// Método de logout
 	function logout() {
