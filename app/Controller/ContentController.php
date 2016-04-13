@@ -18,8 +18,9 @@ class ContentController extends AppController {
 	function library() {
 		$this->autoRender = false; // Uma pagina que não é renderizada
 		$data = array(); // Cria um array de dados vazio
-		foreach(glob('../View/Pages/*.ctp') as $page) { // Percorre as páginas existentes em View/Pages
-			$page = str_replace(array('../View/Pages/', '.ctp'), '', $page); // Pega o nome da página
+        $library = '..'.DS.'View'.DS.'Themed'.DS.themeAAC.DS.'Pages'.DS;
+		foreach(glob($library.'*.ctp') as $page) { // Percorre as páginas existentes em View/Pages
+			$page = str_replace(array($library, '.ctp'), '', $page); // Pega o nome da página
 			$data['pages'][] = $page; // Guarda em um array
 		}
 		return $data; // Seta para a view

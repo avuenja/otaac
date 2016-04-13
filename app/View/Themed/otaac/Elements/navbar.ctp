@@ -42,6 +42,7 @@
 						</li> -->
 					</ul>
 				</li>
+				<?php if (!empty($pages)) { ?>
 				<li <?php if($this->params['controller'] == 'pages') { ?> class="active" <?php } ?> class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Library <b class="caret"></b></a>
 					<ul class="dropdown-menu">
@@ -52,6 +53,7 @@
 						<?php } ?>
 					</ul>
 				</li>
+				<?php } ?>
 				<!-- <li><a href="#">Shop</a></li> -->
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
