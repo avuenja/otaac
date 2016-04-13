@@ -4,7 +4,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label">Recovery key:</label>
 		<div class="col-sm-9">
-			<?php echo $this->Form->input('recovery_key', array('label' => false, 'class' => 'form-control', 'placeholder' => '20 characters')); ?>
+			<?php echo $this->Form->input('recovery_key', array('label' => false, 'class' => 'form-control', 'placeholder' => '20 characters', 'autocomplete' => 'off')); ?>
 		</div>
 	</div>
 	<div class="form-group">
@@ -22,7 +22,6 @@
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-9">
 			<button type="submit" class="btn btn-success">Recover</button>
-			<button type="reset" class="btn btn-default">Cancel</button>
 		</div>
 	</div>
 	<?php echo $this->Form->end();?>

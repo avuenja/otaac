@@ -114,23 +114,48 @@ class AccountsController extends AppController {
     // Método de change account
     function recover() {
         if(!$this->Session->check('Account')) { // Se não existe uma sessão criada:
-            if ($this->request->data['Account']['password'] === $this->request->data['Account']['password_repeat']) {
-                $this->request->data['Account']['password'] = hash('sha1', $this->request->data['Account']['password']);
-                $recovery = $this->request->data['Account']['recovery_key'];
-                unset($this->request->data['Account']['password_repeat']);
-                
-                $this->loadModel('RecoveryKey');
-                $recovery_exists = $this->RecoveryKey->find('first', array(
-                    'conditions' => array(
-                        'recovery_key' => $recovery
-                    ),
-                    'recursive' => -1
-                ));
-                pr($recovery_exists);
-            } else {
-                return $this->Session->setFlash('As senhas não conferem!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+            if (!empty($this->request->data)) {
+                if ($this->request->data['Account']['password'] === $this->request->data['Account']['password_repeat']) {
+                    $this->request->data['Account']['password'] = hash('sha1', $this->request->data['Account']['password']);
+                    $recovery = $this->request->data['Account']['recovery_key'];
+                    unset($this->request->data['Account']['password_repeat']);
+                    
+                    $this->loadModel('RecoveryKey');
+                    $recovery_exists = $this->RecoveryKey->find('first', array(
+                        'conditions' => array(
+                            'recovery_key' => $recovery
+                        ),
+                        'recursive' => -1
+                    ));
+                    if (!empty($recovery_exists)) {
+                        if ($this->Account->updateAll(
+                            array(
+                                'Account.password' => "'".$this->request->data['Account']['password']."'"
+                            ), 
+                            array(
+                                'Account.id' => $recovery_exists['RecoveryKey']['account_id']
+                            )
+                        )) {
+                            $new_recovery = $this->RecoveryKey->chave_seguranca();
+                            if ($this->RecoveryKey->updateAll(
+                                array(
+                                    'RecoveryKey.recovery_key' => "'".$new_recovery."'"
+                                ), 
+                                array(
+                                    'RecoveryKey.id' => $recovery_exists['RecoveryKey']['id']
+                                )
+                            )) {
+                                $this->Session->setFlash('Senha trocada com sucesso! <b>Sua nova recovery key é: '.$new_recovery.' </b>', 'default', array('class'=>'alert alert-success')); // Retorna erro
+                                return $this->redirect('/accounts/login'); // Redireciona pois já esta logado
+                            }
+                        }
+                    } else {
+                        return $this->Session->setFlash('Recovery key inexistente!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+                    }
+                } else {
+                    return $this->Session->setFlash('As senhas não conferem!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+                }
             }
-            exit();
         } else { // Se não:
             return $this->redirect('/'); // Redireciona pois já esta logado
         }
