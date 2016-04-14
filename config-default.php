@@ -59,3 +59,10 @@ $config['Worlds'] = array(
 	0 	=> 'Parlon',
 	1 	=> 'Grihon'
 );
+// Configurações de rates
+$config['Rates'] = array(
+    'exp'   => 5,
+    'magic' => 7,
+    'skill' => 30,
+    'loot'  => 3
+);

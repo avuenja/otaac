@@ -17,3 +17,8 @@ define('dir_server', $config['Server']['dir']);
 define('layoutAAC', $config['Engine']['layout']);
 define('themeAAC', $config['Engine']['theme']);
 define('url',  $config['Engine']['url']);
+// Constante de rates
+define('rateExp',  $config['Rates']['exp']);
+define('rateMagic',  $config['Rates']['magic']);
+define('rateSkill',  $config['Rates']['skill']);
+define('rateLoot',  $config['Rates']['loot']);

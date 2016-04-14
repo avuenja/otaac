@@ -11,19 +11,19 @@
 			<tbody>
 				<tr>
 					<td><strong>Experience:</strong></td>
-					<td><a href="expstages.php">average 27x</a></td>
+					<td><a href="/library/stages"><?php echo rateExp ?>x</a></td>
 				</tr>
 				<tr>
 					<td><strong>Magic:</strong></td>
-					<td>7x</td>
+					<td><?php echo rateMagic ?>x</td>
 				</tr>
 				<tr>
 					<td><strong>Skill:</strong></td>
-					<td>30x</td>
+					<td><?php echo rateSkill ?>x</td>
 				</tr>
 				<tr>
 					<td><strong>Loot:</strong></td>
-					<td>3x</td>
+					<td><?php echo rateLoot ?>x</td>
 				</tr>
 			</tbody>
 		</table>
