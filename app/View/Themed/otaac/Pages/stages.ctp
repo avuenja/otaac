@@ -8,10 +8,14 @@
         </thead>
         <tbody>
             <?php
-            for ($level = 1, $rateExp = 0; $level <= 100; $level++) { ?>
+            for ($level = 1; $level <= 100; $level++) { ?>
                 <tr>
+                    <?php
+                    $level_calculate = $level - 1;
+                    $exp = (50 * ($level_calculate) * ($level_calculate) * ($level_calculate) - 150 * ($level_calculate) * ($level_calculate) + 400 * ($level_calculate)) / 3;
+                    ?>
                     <td><?php echo $level ?></td>
-                    <td><?php echo ($level * 100) * rateExp ?></td>
+                    <td><?php echo $exp ?></td>
                 </tr>
             <?php } ?>
         </tbody>
