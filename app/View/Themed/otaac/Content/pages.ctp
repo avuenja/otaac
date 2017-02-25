@@ -1,23 +1,30 @@
-<?php
-$this->set('title_for_layout', 'Admin Panel ['.$this->Session->read('Account.name').']');
-echo $this->Html->css('/libs/jquery-ui/jquery-ui');
-echo $this->Html->script('/libs/jquery-ui/jquery-ui.min');
-
-echo $this->Html->css('/libs/elfinder/css/elfinder.min');
-echo $this->Html->css('/libs/elfinder/css/theme');
-echo $this->Html->script('/libs/elfinder/js/elfinder.min');
-echo $this->Html->script('/libs/elfinder/js/i18n/elfinder.pt_BR');
-?>
-
-<script type="text/javascript" charset="utf-8">
-	$().ready(function() {
-		var elf = $('#elfinder').elfinder({
-			url: '<?php echo url; ?>libs/elfinder/php/connector.php', // connector URL (REQUIRED)
-			// lang: 'pt_BR',             // language (OPTIONAL)
-			rememberLastDir: true
-		}).elfinder('instance');
-	});
-</script>
+<?php $this->set('title_for_layout', 'Pages'); // Titulo da pagina ?>
 <div class="panel panel-default panel-body">
-	<div id="elfinder"></div>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Pages</th>
+					<th class="text-right">
+						<a href="<?php echo url; ?>posts/create" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> New Page</a>
+					</th>
+				</tr>
+				<tr>
+					<th>Title</th>
+					<th class="text-right">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($pages as $page) { ?>
+					<tr>
+						<td><?php echo $page; ?></td>
+						<td class="text-right">
+							<a href="<?php echo url.'posts/edit/'.$page; ?>" type="button" class="btn btn-default btn-xs" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+							<a href="<?php echo url.'posts/delete/'.$page; ?>" type="button" class="btn btn-default btn-xs" title="Excluir"><span class="glyphicon glyphicon-trash"></span></a>
+						</td>
+					</tr>
+				<?php } ?>
+			</tbody>
+		</table>
+	</div>
 </div>
