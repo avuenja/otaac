@@ -165,7 +165,7 @@ class CommunityController extends AppController {
             $this->set('vocation', $vocation_player); // Envia para a view os dados
             $this->set('sortName', $orderName); // Envia para a view os dados
         } else { // Se não:
-            $this->Session->setFlash('Não foi possível encontrar este player!', 'default', array('class'=>'alert alert-danger')); // Retorna erro
+            $this->Session->setFlash('Não há players no servidor :(', 'default', array('class'=>'alert alert-danger')); // Retorna erro
         }
 	}
 	
