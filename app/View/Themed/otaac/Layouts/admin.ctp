@@ -26,7 +26,7 @@
 					echo $this->fetch('content');
 					?>
 					<center><?php echo $this->element('sql_dump'); ?></center>
-					<p class="text-right">Desenvolvido por <a href="http://otaac.com.br">OTAAC Community</a> &copy; 2014</p>
+					<p class="text-right">Desenvolvido por <a href="https://github.com/avuenja/otaac">OTAAC Community</a> &copy; 2014</p>
 				</div>
 			</div>
 		</div>

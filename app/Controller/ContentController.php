@@ -18,7 +18,10 @@ class ContentController extends AppController {
 	        $library = '..'.DS.'View'.DS.'Themed'.DS.themeAAC.DS.'Pages'.DS;
 			foreach(glob($library.'*.ctp') as $page) { // Percorre as páginas existentes em View/Pages
 				$page = str_replace(array($library, '.ctp'), '', $page); // Pega o nome da página
-				$pages[] = ucwords($page); // Guarda em um array
+
+				if ($page != 'stages') { // Remove a página de stages, já que a mesma é gerada automáticamente
+					$pages[] = ucwords($page); // Guarda em um array
+				}
 			}
 
 			$this->set(compact('pages')); // Seta para a view

@@ -11,7 +11,7 @@
 			<tbody>
 				<tr>
 					<td><strong>Experience:</strong></td>
-					<td><a href="/library/stages"><?php echo rateExp ?>x</a></td>
+					<td><a href="<?php echo url; ?>library/stages"><?php echo rateExp ?>x</a></td>
 				</tr>
 				<tr>
 					<td><strong>Magic:</strong></td>
