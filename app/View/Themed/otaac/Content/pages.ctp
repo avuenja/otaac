@@ -6,7 +6,7 @@
 				<tr>
 					<th>Pages</th>
 					<th class="text-right">
-						<a href="<?php echo url; ?>posts/create" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> New Page</a>
+						<a href="<?php echo url; ?>content/create_page" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> New Page</a>
 					</th>
 				</tr>
 				<tr>
@@ -19,8 +19,8 @@
 					<tr>
 						<td><?php echo $page; ?></td>
 						<td class="text-right">
-							<a href="<?php echo url.'posts/edit/'.$page; ?>" type="button" class="btn btn-default btn-xs" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
-							<a href="<?php echo url.'posts/delete/'.$page; ?>" type="button" class="btn btn-default btn-xs" title="Excluir"><span class="glyphicon glyphicon-trash"></span></a>
+							<a href="<?php echo url.'content/edit_page/'.$page; ?>" type="button" class="btn btn-default btn-xs" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+							<a href="<?php echo url.'content/delete_page/'.$page; ?>" type="button" class="btn btn-default btn-xs" title="Excluir"><span class="glyphicon glyphicon-trash"></span></a>
 						</td>
 					</tr>
 				<?php } ?>

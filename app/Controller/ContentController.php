@@ -18,10 +18,7 @@ class ContentController extends AppController {
 	        $library = '..'.DS.'View'.DS.'Themed'.DS.themeAAC.DS.'Pages'.DS;
 			foreach(glob($library.'*.ctp') as $page) { // Percorre as páginas existentes em View/Pages
 				$page = str_replace(array($library, '.ctp'), '', $page); // Pega o nome da página
-
-				if ($page != 'stages') { // Remove a página de stages, já que a mesma é gerada automáticamente
-					$pages[] = ucwords($page); // Guarda em um array
-				}
+				$pages[] = ucwords($page); // Guarda em um array
 			}
 
 			$this->set(compact('pages')); // Seta para a view
@@ -34,8 +31,8 @@ class ContentController extends AppController {
 			if (!empty($this->data)) { // Se foi passado algo pelo formulário:
 				$library 	= '..'.DS.'View'.DS.'Themed'.DS.themeAAC.DS.'Pages'.DS; // Local do arquivo
 
-				$page 		= strtolower($this->data['Post']['title']); // Arruma o título do arquivo
-				$content 	= '<div class="panel panel-default panel-body">'.$this->data['Post']['body'].'</div>'; // Arruma o corpo do arquivo
+				$page 		= strtolower($this->data['Page']['title']); // Arruma o título do arquivo
+				$content 	= $this->data['Page']['body']; // Arruma o corpo do arquivo
 
 				$file 		= new File($library.$page.'.ctp', true, 0644); // Cria o arquivo
 				$file->write($content); // Escreve no arquivo
@@ -43,6 +40,49 @@ class ContentController extends AppController {
 
 				return $this->redirect(array('action' => 'pages')); // Retorna verdadeiro (redireciona)
 			}
+
+			$this->render('page_form');
+		}
+	}
+
+	// Função para editar as páginas
+	function edit_page($page) {
+		if($this->OTAAC->authAdmin()) { // Componente de autorização
+			$library 	= '..'.DS.'View'.DS.'Themed'.DS.themeAAC.DS.'Pages'.DS; // Local do arquivo
+
+			if (!empty($this->data)) { // Se foi passado algo pelo formulário:
+				$page 		= strtolower($this->data['Page']['title']); // Arruma o título do arquivo
+				$content 	= $this->data['Page']['body']; // Arruma o corpo do arquivo
+
+				$file 		= new File($library.$page.'.ctp', true, 0644); // Cria o arquivo
+				$file->write($content); // Escreve no arquivo
+				$file->close(); // Fecha o arquivo
+
+				return $this->redirect(array('action' => 'pages')); // Retorna verdadeiro (redireciona)
+			} else {
+				$title 		= $page;
+				$page 		= strtolower($page);
+				$file 		= new File($library.$page.'.ctp');
+				$content 	= $file->read();
+
+				$this->request->data['Page']['title'] 	= $title;
+				$this->request->data['Page']['body'] 	= $content;
+			}
+
+			$this->render('page_form');
+		}
+	}
+
+	// Função para deletar as páginas
+	function delete_page($page) {
+		if($this->OTAAC->authAdmin()) { // Componente de autorização
+			$library 	= '..'.DS.'View'.DS.'Themed'.DS.themeAAC.DS.'Pages'.DS; // Local do arquivo
+			$page 		= strtolower($page);
+			$file 		= new File($library.$page.'.ctp');
+
+			$file->delete();
+
+			return $this->redirect(array('action' => 'pages')); // Retorna verdadeiro (redireciona)
 		}
 	}
 
